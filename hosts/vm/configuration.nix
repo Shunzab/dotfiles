@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -125,7 +125,6 @@
      rofi
      pcmanfm
      tmux
-     waypipe
   ];
 
   fonts.packages = with pkgs; [
