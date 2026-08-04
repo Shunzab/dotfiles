@@ -1,0 +1,5 @@
+require("config.options")
+require("themes.tokyo_night_moon")
+require("config.taskbar")
+require("misc.qol")
+require("config.transparency")

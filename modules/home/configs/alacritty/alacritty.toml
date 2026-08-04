@@ -1,0 +1,105 @@
+[window]
+dimensions = { columns = 0, lines = 0 }
+padding = { x = 0, y = 0 }
+decorations = "None" # Options: "Full", "None" (borderless), "Transparent"
+opacity = 0.95
+blur = true
+dynamic_padding = true
+resize_increments = true
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+unfocused_hollow = true
+blink_interval = 500
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
+
+[scrolling]
+history = 10000
+
+[env]
+TERM = "xterm-256color" # Solves SSH color issues with Neovim automatically
+
+[terminal.shell]
+program = "/bin/zsh"
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+[colors.primary]
+background = '#1a1b26' # Darkened background for higher contrast
+foreground = '#c0caf5' # Crisp, high-contrast text color
+
+[colors.normal]
+black   = '#15161e' # Deeper black
+red     = '#ff757f'
+green   = '#c3e88d'
+yellow  = '#ffc777'
+blue    = '#82aaff'
+magenta = '#c099ff'
+cyan    = '#86e1fc'
+white   = '#c0caf5'
+
+[colors.bright]
+black   = '#565f89' # Brightened black for visible line numbers and subtle borders
+red     = '#ff757f'
+green   = '#c3e88d'
+yellow  = '#ffc777'
+blue    = '#82aaff'
+magenta = '#c099ff'
+cyan    = '#86e1fc'
+white   = '#c0caf5'
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "Equals"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"
+
+[cursor.vi_mode_style]
+shape = "Underline"
+blinking = "On"
+
+[[keyboard.bindings]]
+key = "Space"
+mods = "Control|Shift"
+action = "ToggleViMode"
