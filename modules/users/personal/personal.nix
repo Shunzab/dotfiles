@@ -1,15 +1,20 @@
-{config, lib, pkgs, ...}:
+{config, lib, pkgs, options, ...}:
 
+let
+  user_shell = if (pkgs ? zsh) then pkgs.zsh else pkgs.bash;
+  has_home_manager = options ? home-manager;
+in
 {
   users.mutableUsers = false;
   users.users = {
     srs = {
       isNormalUser = true;
       extraGroups = ["wheel"];
+      shell = user_shell;
     }
   };
-  config = lib.mkIf (config ? home-manager) {
-    home-manager.users.srs = import ./profiles/home.nix;
-  };
+  home-manager = if has_home_manager then {
+    users.srs = import ./profiles/home.nix;
+  } else {};
 }
 
