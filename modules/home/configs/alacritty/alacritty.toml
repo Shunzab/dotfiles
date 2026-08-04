@@ -61,7 +61,7 @@ cyan    = '#86e1fc'
 white   = '#c0caf5'
 
 [colors.bright]
-black   = '#565f89' # Brightened black for visible line numbers and subtle borders
+black   = '#565f89' 
 red     = '#ff757f'
 green   = '#c3e88d'
 yellow  = '#ffc777'
