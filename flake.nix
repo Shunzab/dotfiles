@@ -25,6 +25,11 @@
     url = "github:nix-community/NUR";
     inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix = {
+    url = "github:nix-community/stylix"
+    inputs.nixpkgs.follows = "nixpkgs"
+    };
   };
   
   outputs = 
@@ -36,6 +41,8 @@
       home-manager, 
       disko, 
       sops-nix,
+      stylix,
+      hardware,
       ...
     }@inputs:
 
@@ -43,7 +50,7 @@
     overlays = import ./overlays {inherit inputs;};
   in
   {
-    overlays = overlays;
+    overlays = overlays; # Loads overlays, usage pkgs.stable.${pkgname} and pkgs.nur.${pkgname}
     nixosConfigurations = {
       
       vm = nixpkgs.lib.nixosSystem{
@@ -56,7 +63,7 @@
               overlays.stable
               overlays.nur
 	    ];
-	  }
+
 
           sops-nix.nixosModules.sops
 	  disko.nixosModules.disko
