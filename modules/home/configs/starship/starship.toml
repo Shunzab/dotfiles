@@ -1,0 +1,46 @@
+add_newline = true
+palette = "harsh_moon"
+scan_timeout = 0
+
+format = "$all\n$directory$character"
+
+[line_break]
+disabled = true
+
+#right_format = """$all"""
+command_timeout = 1000
+
+[character]
+vicmd_symbol = "[N] >>>"
+success_symbol = '[➜](bold green)'
+
+[directory.substitutions]
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style)'
+style = 'bold magenta'
+
+[nix_shell]
+symbol = '󱄅 '
+format = '[$symbol$state]($style) '
+style = 'bold cyan'
+
+[custom.nix_files]
+symbol = '󱄅 '
+extensions = ['nix']
+files = ['flake.nix', 'shell.nix', 'default.nix']
+format = '[$symbol]($style)'
+style = 'bold cyan'
+
+[palettes.harsh_moon]
+bg = '#1a1b26'
+fg = '#c0caf5'
+black = '#15161e'
+red = '#ff757f'
+green = '#c3e88d'
+yellow = '#ffc777'
+blue = '#82aaff'
+magenta = '#c099ff'
+cyan = '#86e1fc'
+white = '#c0caf5'
+bright_black = '#565f89'

@@ -1,0 +1,60 @@
+safe_eval() {
+  if command -v "$1" &>/dev/null; then
+    eval "$("$@")"
+  else
+    echo "[zsh warning] Tool '$1' not found. Skipping initialization." >&2
+  fi
+}
+
+safe_alias() {
+  local alias_name="$1"
+  local target_cmd="$2"
+  if command -v "$target_cmd" &>/dev/null; then
+    alias "$alias_name=$target_cmd"
+  fi
+}
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export LANG="en_US.UTF-8"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+setopt prompt_subst
+setopt auto_cd
+setopt interactive_comments
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu select
+
+autoload -Uz compinit && compinit
+
+export TERM=xterm-256color
+
+bindkey -v
+bindkey 'jj' vi-cmd-mode
+bindkey '^P' up-history
+bindkey '^N' down-history
+
+bindkey '^L' autosuggest-accept
+
+safe_alias "cat" "bat"
+safe_alias "ls" "eza"
+safe_alias "grep" "rg"
+safe_alias "find" "fd"
+safe_alias "top" "btm"
+safe_alias "du" "dust"
+
+alias l="eza -l --icons --git -a"
+alias lt="eza --tree --level=2 --icons --git"
+alias cl="clear"
+alias v="nvim"
+
+cx() { cd "$@" && l; }
+
+safe_eval zoxide init zsh --cmd cd
+safe_eval starship init zsh
+safe_eval atuin init zsh
+safe_eval direnv hook zsh
+#safe_eval oh-my-posh init zsh --config ./oh_my_posh/jetbreeves.omp.json
