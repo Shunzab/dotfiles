@@ -1,5 +1,5 @@
 add_newline = true
-palette = "harsh_moon"
+#palette = "harsh_moon"
 scan_timeout = 0
 
 format = "$all\n$directory$character"
@@ -32,15 +32,15 @@ files = ['flake.nix', 'shell.nix', 'default.nix']
 format = '[$symbol]($style)'
 style = 'bold cyan'
 
-[palettes.harsh_moon]
-bg = '#1a1b26'
-fg = '#c0caf5'
-black = '#15161e'
-red = '#ff757f'
-green = '#c3e88d'
-yellow = '#ffc777'
-blue = '#82aaff'
-magenta = '#c099ff'
-cyan = '#86e1fc'
-white = '#c0caf5'
-bright_black = '#565f89'
+#[palettes.harsh_moon]
+#bg = '#1a1b26'
+#fg = '#c0caf5'
+#black = '#15161e'
+#red = '#ff757f'
+#green = '#c3e88d'
+#yellow = '#ffc777'
+#blue = '#82aaff'
+#magenta = '#c099ff'
+#cyan = '#86e1fc'
+#white = '#c0caf5'
+#bright_black = '#565f89'

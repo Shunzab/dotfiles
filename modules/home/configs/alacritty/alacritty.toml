@@ -46,33 +46,33 @@ style = "Italic"
 family = "JetBrainsMono Nerd Font"
 style = "Bold Italic"
 
-[colors.primary]
-background = '#1a1b26' # Darkened background for higher contrast
-foreground = '#c0caf5' # Crisp, high-contrast text color
-
-[colors.normal]
-black   = '#15161e' # Deeper black
-red     = '#ff757f'
-green   = '#c3e88d'
-yellow  = '#ffc777'
-blue    = '#82aaff'
-magenta = '#c099ff'
-cyan    = '#86e1fc'
-white   = '#c0caf5'
-
-[colors.bright]
-black   = '#565f89' 
-red     = '#ff757f'
-green   = '#c3e88d'
-yellow  = '#ffc777'
-blue    = '#82aaff'
-magenta = '#c099ff'
-cyan    = '#86e1fc'
-white   = '#c0caf5'
+#[colors.primary]
+#background = '#1a1b26'
+#foreground = '#c0caf5'
+#
+#[colors.normal]
+#black   = '#15161e'
+#red     = '#ff757f'
+#green   = '#c3e88d'
+#yellow  = '#ffc777'
+#blue    = '#82aaff'
+#magenta = '#c099ff'
+#cyan    = '#86e1fc'
+#white   = '#c0caf5'
+#
+#[colors.bright]
+#black   = '#565f89'
+#red     = '#ff757f'
+#green   = '#c3e88d'
+#yellow  = '#ff9e64'
+#blue    = '#82aaff'
+#magenta = '#c099ff'
+#cyan    = '#86e1fc'
+#white   = '#c0caf5'
 
 [[keyboard.bindings]]
 key = "V"
-mods = "Control|Shift"
+mods = "Control"
 action = "Paste"
 
 [[keyboard.bindings]]

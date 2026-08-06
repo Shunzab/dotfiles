@@ -21,7 +21,7 @@ end
 -- 2. Native indent lines setup
 vim.opt.list = true
 vim.opt.listchars = {
-  leadmultispace = "│   ", -- Adjust spaces to match your shiftwidth/tabstop
+  leadmultispace = "│ ", -- Adjust spaces to match your shiftwidth/tabstop
   tab = "│ ",
 }
 
