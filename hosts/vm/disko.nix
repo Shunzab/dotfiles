@@ -3,72 +3,80 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sda"; 
+        device = "/dev/sda"; # Change it as you wish.
         content = {
           type = "gpt";
           partitions = {
             BOOT = {
+              priority = 1;
               size = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ]; 
+                mountOptions = [ "umask=0077" ];
               };
             };
-            SWAP = {
-              size = "24G"; 
-	      content = {
-                type = "luks";
-                name = "cryptswap";
-                settings = {
-                  allowDiscards = true; 
-                };
-                content = {
-                  type = "swap";
-                  resumeDevice = true; 
-                };
-              };
-            };
+
             NIXOS = {
               size = "100%";
               content = {
                 type = "luks";
-                name = "cryproot";
-                settings = {
-                  allowDiscards = true;
-                };
+                name = "cryptroot";
+                settings.allowDiscards = true;
                 content = {
-                  type = "btrfs";
-                  extraArgs = [ "-f" ]; 
-		  #passwordFile = "../../../secret_file.txt"
-                  subvolumes = {
-                    "@" = {
-                      mountpoint = "/";
-                      mountOptions = [ "compress=zstd" "noatime" ];
-                    };
-                    "@home" = {
-                      mountpoint = "/home";
-                      mountOptions = [ "compress=zstd" "noatime" ];
-                    };
-                    "@nix" = {
-                      mountpoint = "/nix";
-                      mountOptions = [ "compress=zstd" "noatime" ];
-                    };
-                    "@snapshots" = {
-                      mountpoint = "/.snapshots";
-                      mountOptions = [ "compress=zstd" "noatime" ];
-                    };
-                    "@data" = {
-                      mountpoint = "/data";
-                      mountOptions = [ "compress=zstd" "noatime" ];
-                    };
-                    "@logs" = {
-                      mountpoint = "/var/log";
-                      mountOptions = [ "compress=zstd" "noatime" ];
-                    };
-                  };
+                  type = "lvm_pv";
+                  vg = "pool";
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+
+    lvm_vg = {
+      pool = {
+        type = "lvm_vg";
+        lvs = {
+          swap = {
+            size = "8G";
+            content = {
+              type = "swap";
+              resumeDevice = true;
+            };
+          };
+
+          root = {
+            size = "100%FREE";
+            content = {
+              type = "btrfs";
+              extraArgs = [ "-f" ];
+              subvolumes = {
+                "/@" = {
+                  mountpoint = "/";
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                };
+                "/@home" = {
+                  mountpoint = "/home";
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                };
+                "/@nix" = {
+                  mountpoint = "/nix";
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                };
+                "/@log" = {
+                  mountpoint = "/var/log";
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                };
+                "/@snapshots" = {
+                  mountpoint = "/snapshots";
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                };
+                "/@data" = {
+                  mountpoint = "/data";
+                  mountOptions = [ "compress=zstd" "noatime" ];
                 };
               };
             };

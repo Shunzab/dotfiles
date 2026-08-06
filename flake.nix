@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
     hardware = {
       url = "github:nixos/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,7 +53,6 @@
     in
     {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
-
       nixosConfigurations = {
         vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -67,6 +68,8 @@
             disko.nixosModules.disko
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
+            nix-flatpak.nixosModules.nix-flatpak
+            #hardware.nixosModules.lenovo-thinkpad-x390
             {
               home-manager = {
                 useGlobalPkgs = true;

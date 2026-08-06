@@ -27,3 +27,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- Keep sign column fixed to prevent layout shift when diagnostics appear
 vim.opt.signcolumn = "yes"
+

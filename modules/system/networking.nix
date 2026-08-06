@@ -40,9 +40,9 @@
     enableRecommendedAlgorithms = true;
   };  
   
-  users.users.root.openssh.authorizedKeys.keys = [  
-    "ssh-ed25519 AAAA... your-public-key-here"  
-  ];  
+  #users.users.root.openssh.authorizedKeys.keys = [  
+  #  "ssh-ed25519 AAAA... your-public-key-here"  
+  #];  
   
   # services.openssh.hostKeys = [  
   #   { type = "ed25519"; path = "/etc/ssh/ssh_host_ed25519_key"; }  
