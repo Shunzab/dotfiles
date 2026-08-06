@@ -7,3 +7,9 @@ vim.keymap.set({ "n", "v" }, "<leader>v", "<C-v>", {
     silent = true,
     desc = "Visual Block Mode",
 })
+
+vim.keymap.set({ "n", "v" }, "<leader>r", "<C-r>", {
+    noremap = true,
+    silent = true,
+    desc = "Redo",
+})
