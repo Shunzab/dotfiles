@@ -19,15 +19,16 @@ let
     description = "Enable waydroid and lxc also reqs wayland";
   };
 
-  #options.mynixos.docker = lib.mkOption { 
-  #  type = lib.types.bool;  
-  #  default = false;
-  #  description = "Enable docker";
-  #};
+  options.mynixos.docker = lib.mkOption { 
+    type = lib.types.bool;  
+    default = false;
+    description = "Enable docker";
+  };
   
   config = {
     virtualisation = {
       waydroid.enable = cfg.waydroid;
+      docker.enable = cfg.docker;
       podman = {
         enable = cfg.podman;
         dockerCompat = true;

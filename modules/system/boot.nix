@@ -41,7 +41,8 @@ in
           editor = false;
         };
         efi.canTouchEfiVariables = true;
-        timeout = 7;
+        timeout = 0;
+        systemd-boot.consoleMode = "max";
       };
 
       consoleLogLevel = 0;
@@ -54,7 +55,26 @@ in
           "rd.systemd.show_status=false"
           "rd.udev.log_level=3"
           "udev.log_priority=3"
+          "vt.global_cursor_default=0"
+          "bgrt_disable"
         ];
+      plymouth = {  
+        enable = true;  
+        theme = "connect";  
+        themePackages = [  
+          (pkgs.adi1090x-plymouth-themes.override {  
+            selected_themes = [  
+              "connect"  
+              "colorful_loop"  
+              "circuit"  
+              "cubes"  
+              "hexagon_hud"  
+              "cross_hud"  
+              "pixels"  
+            ];   
+          })  
+        ];  
+      };  
 
       resumeDevice = if cfg.hibernation then "/dev/pool/swap" else ""; 
       initrd.systemd = {

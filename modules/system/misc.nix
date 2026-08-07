@@ -1,4 +1,4 @@
-{config, lib, pkgs, ...}:
+{config, lib, pkgs, inputs, ...}:
 
 {
   # Fonts of the system

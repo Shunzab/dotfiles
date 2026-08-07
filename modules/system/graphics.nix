@@ -1,16 +1,148 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 # to add wms, and different kinds of dms only of wayland.
-{
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-
-  extraPackages = with pkgs; [
-      vaapiVdpau
-      libvdpau-va-gl
-      intel-media-driver 
-      OpenCL / Compute 
-      intel-compute-runtime
-    ];  
+let
+  cfg = {
+    kde =  config.mynixos.kde;
+    hyprland = config.mynixos.hyprland;
+    sway = config.mynixos.sway;
+    waylandUtils = config.mynixos.waylandUtils;
   };
+  isWaylandWM = cfg.hyprland || cfg.sway;
+in
+{
+  options.mynixos.kde = lib.mkOption {
+    type = lib.types.bool;  
+    default = true;
+    description = "enable kde";
+  };
+
+
+  options.mynixos.sway = lib.mkOption {
+    type = lib.types.bool;  
+    default = false;
+    description = "enable sway";
+  };
+
+
+  options.mynixos.hyprland = lib.mkOption {
+    type = lib.types.bool;  
+    default = false;
+    description = "enable hyprland";
+  };
+
+  options.mynixos.waylandUtils = lib.mkOption {
+      type = lib.types.bool;
+      default = isWaylandWM;
+      description = "Enable Wayland utilities (Waybar, Rofi, SwayNC, etc.)";
+    };
+
+ 
+  config = lib.mkMerge [
+    {
+      hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+
+      extraPackages = with pkgs; [
+          intel-media-driver 
+          intel-compute-runtime
+        ];  
+      };
+
+      programs.sway = {
+        enable = cfg.sway;
+        xwayland.enable = true;
+      };
+
+      # all styling will be done in stylix module
+      programs.regreet = {
+        enable = cfg.sway || cfg.hyprland;
+      };
+
+      # for clean login when you have a login manager.
+      systemd.services."getty@tty1".enable = !(isWaylandWM);
+      systemd.services."autovt@tty1".enable = !(isWaylandWM);
+
+    }
+
+    (lib.mkIf cfg.hyprland {
+      programs.hyprland = {
+        enable = cfg.hyprland;
+        xwayland.enable = true; 
+      };
+      environment.systemPackages = with pkgs; [ hyprpolkitagent ];
+    })
+
+    (lib.mkIf cfg.waylandUtils {
+      programs = {
+        waybar.enable = true;
+      };
+      services = {
+        swaync.enable = true;
+        hypridle.enable = true;
+        swayosd.enable = true;
+      };
+
+      environment.systemPackages = with pkgs; [
+        # Launchers
+        fuzzel           # Minimalist, insanely fast Wayland launcher (replaces rofi)
+        # Audio & Screen OSD
+        pavucontrol      # Audio control GUI
+        playerctl        # Media playback controls (play/pause/next for Waybar)
+        # Screenshots & Annotations
+        grim             # Screenshot capture backend
+        slurp            # Screen region selection
+        satty            # Modern screenshot annotation tool (arrows, blur, text)
+        # Clipboard Management
+        wl-clipboard     # Core Wayland clipboard CLI
+        cliphist         # Clipboard history manager
+        # Utilities & System Info
+        libnotify        # Desktop notification trigger (notify-send)
+        fastfetch        # Modern system info fetch tool
+      ];
+
+      fonts.packages = with pkgs; [
+        nerd-fonts.jetbrains-mono
+        font-awesome
+      ];
+    })
+
+
+    (lib.mkIf cfg.kde {
+      #services.xserver.enable = true; # use this if you strictly need x11.
+      services.displaymanager = {
+        sddm.enable = true;
+        defaultSession = "plasma";
+      }; 
+      services.desktopManager.plasma6 = {
+        enable = true;  
+        enableQt5Integration = false;
+      }; 
+      programs.kde-pim.enable = false;  
+      services.power-profiles-daemon.enable = true;
+      environment.plasma6.excludePackages = with pkgs.kdePackages; [  
+        aurorae  
+        plasma-browser-integration  
+        plasma-workspace-wallpapers  
+        konsole  
+        kwin-x11  
+        ark  
+        elisa  
+        gwenview  
+        okular  
+        kate  
+        ktexteditor  
+        khelpcenter  
+        #dolphin  
+        baloo-widgets  
+        #dolphin-plugins  
+        spectacle  
+        ffmpegthumbs  
+        krdp  
+        #plasma-keyboard  
+        qtvirtualkeyboard  
+        union  
+      ];
+    })
+  ];
 }
