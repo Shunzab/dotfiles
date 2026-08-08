@@ -34,6 +34,11 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -46,6 +51,7 @@
       stylix,
       hardware,
       nix-flatpak,
+      impermanence,
       ...
     }@inputs:
     let
