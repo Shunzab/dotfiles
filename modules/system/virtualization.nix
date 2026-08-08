@@ -1,4 +1,9 @@
-{pkgs, lib, config, ...}:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   cfg = {
@@ -6,25 +11,26 @@ let
     waydroid = config.mynixos.waydroid;
     docker = config.mynixos.docker;
   };
+in
 {
-  options.mynixos.podman = lib.mkOption { 
-    type = lib.types.bool;  
+  options.mynixos.podman = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable podman";
   };
 
-  options.mynixos.waydroid = lib.mkOption { 
-    type = lib.types.bool;  
+  options.mynixos.waydroid = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable waydroid and lxc also reqs wayland";
   };
 
-  options.mynixos.docker = lib.mkOption { 
-    type = lib.types.bool;  
+  options.mynixos.docker = lib.mkOption {
+    type = lib.types.bool;
     default = false;
     description = "Enable docker";
   };
-  
+
   config = {
     virtualisation = {
       waydroid.enable = cfg.waydroid;

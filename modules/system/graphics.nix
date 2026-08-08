@@ -1,8 +1,13 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 # to add wms, and different kinds of dms only of wayland.
 let
   cfg = {
-    kde =  config.mynixos.kde;
+    kde = config.mynixos.kde;
     hyprland = config.mynixos.hyprland;
     sway = config.mynixos.sway;
     waylandUtils = config.mynixos.waylandUtils;
@@ -11,42 +16,39 @@ let
 in
 {
   options.mynixos.kde = lib.mkOption {
-    type = lib.types.bool;  
+    type = lib.types.bool;
     default = true;
     description = "enable kde";
   };
 
-
   options.mynixos.sway = lib.mkOption {
-    type = lib.types.bool;  
+    type = lib.types.bool;
     default = false;
     description = "enable sway";
   };
 
-
   options.mynixos.hyprland = lib.mkOption {
-    type = lib.types.bool;  
+    type = lib.types.bool;
     default = false;
     description = "enable hyprland";
   };
 
   options.mynixos.waylandUtils = lib.mkOption {
-      type = lib.types.bool;
-      default = isWaylandWM;
-      description = "Enable Wayland utilities (Waybar, Rofi, SwayNC, etc.)";
-    };
+    type = lib.types.bool;
+    default = isWaylandWM;
+    description = "Enable Wayland utilities (Waybar, Rofi, SwayNC, etc.)";
+  };
 
- 
   config = lib.mkMerge [
     {
       hardware.graphics = {
         enable = true;
         enable32Bit = true;
 
-      extraPackages = with pkgs; [
-          intel-media-driver 
+        extraPackages = with pkgs; [
+          intel-media-driver
           intel-compute-runtime
-        ];  
+        ];
       };
 
       programs.sway = {
@@ -68,7 +70,7 @@ in
     (lib.mkIf cfg.hyprland {
       programs.hyprland = {
         enable = cfg.hyprland;
-        xwayland.enable = true; 
+        xwayland.enable = true;
       };
       environment.systemPackages = with pkgs; [ hyprpolkitagent ];
     })
@@ -85,20 +87,20 @@ in
 
       environment.systemPackages = with pkgs; [
         # Launchers
-        fuzzel           # Minimalist, insanely fast Wayland launcher (replaces rofi)
+        fuzzel # Minimalist, insanely fast Wayland launcher (replaces rofi)
         # Audio & Screen OSD
-        pavucontrol      # Audio control GUI
-        playerctl        # Media playback controls (play/pause/next for Waybar)
+        pavucontrol # Audio control GUI
+        playerctl # Media playback controls (play/pause/next for Waybar)
         # Screenshots & Annotations
-        grim             # Screenshot capture backend
-        slurp            # Screen region selection
-        satty            # Modern screenshot annotation tool (arrows, blur, text)
+        grim # Screenshot capture backend
+        slurp # Screen region selection
+        satty # Modern screenshot annotation tool (arrows, blur, text)
         # Clipboard Management
-        wl-clipboard     # Core Wayland clipboard CLI
-        cliphist         # Clipboard history manager
+        wl-clipboard # Core Wayland clipboard CLI
+        cliphist # Clipboard history manager
         # Utilities & System Info
-        libnotify        # Desktop notification trigger (notify-send)
-        fastfetch        # Modern system info fetch tool
+        libnotify # Desktop notification trigger (notify-send)
+        fastfetch # Modern system info fetch tool
       ];
 
       fonts.packages = with pkgs; [
@@ -107,41 +109,40 @@ in
       ];
     })
 
-
     (lib.mkIf cfg.kde {
       #services.xserver.enable = true; # use this if you strictly need x11.
       services.displaymanager = {
         sddm.enable = true;
         defaultSession = "plasma";
-      }; 
+      };
       services.desktopManager.plasma6 = {
-        enable = true;  
+        enable = true;
         enableQt5Integration = false;
-      }; 
-      programs.kde-pim.enable = false;  
+      };
+      programs.kde-pim.enable = false;
       services.power-profiles-daemon.enable = true;
-      environment.plasma6.excludePackages = with pkgs.kdePackages; [  
-        aurorae  
-        plasma-browser-integration  
-        plasma-workspace-wallpapers  
-        konsole  
-        kwin-x11  
-        ark  
-        elisa  
-        gwenview  
-        okular  
-        kate  
-        ktexteditor  
-        khelpcenter  
-        #dolphin  
-        baloo-widgets  
-        #dolphin-plugins  
-        spectacle  
-        ffmpegthumbs  
-        krdp  
-        #plasma-keyboard  
-        qtvirtualkeyboard  
-        union  
+      environment.plasma6.excludePackages = with pkgs.kdePackages; [
+        aurorae
+        plasma-browser-integration
+        plasma-workspace-wallpapers
+        konsole
+        kwin-x11
+        ark
+        elisa
+        gwenview
+        okular
+        kate
+        ktexteditor
+        khelpcenter
+        #dolphin
+        baloo-widgets
+        #dolphin-plugins
+        spectacle
+        ffmpegthumbs
+        krdp
+        #plasma-keyboard
+        qtvirtualkeyboard
+        union
       ];
     })
   ];

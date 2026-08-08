@@ -1,9 +1,14 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
-    
-  ];
-  system.stateVersion = "26.05"; 
-}
 
+  ];
+  system.stateVersion = "26.05";
+}

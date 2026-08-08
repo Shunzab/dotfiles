@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   # Input & Tablet
@@ -24,13 +29,13 @@
   };
 
   # Lid & Power Buttons
-  services.logind.settings.Login = {  
-    HandleLidSwitch = "suspend";  
-    HandleLidSwitchDocked = "ignore";  
-    HandleLidSwitchExternalPower = "suspend";  
-    HandlePowerKey = "hibernate";  
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchDocked = "ignore";
+    HandleLidSwitchExternalPower = "suspend";
+    HandlePowerKey = "hibernate";
 
-    HandlePowerKeyLongPress = "poweroff";  
+    HandlePowerKeyLongPress = "poweroff";
   };
   systemd.sleep.settings.Sleep.HibernateDelaySec = 1800;
 

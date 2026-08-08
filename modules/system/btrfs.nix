@@ -7,11 +7,11 @@
 { config, lib, ... }:
 let
   cfg = config.mynixos.btrfs;
-in 
+in
 {
-    options.mynixos.btrfs = {
+  options.mynixos.btrfs = {
     enable = lib.mkEnableOption "Btrfs maintenance and Snapper snapshots";
-    
+
     user = lib.mkOption {
       type = lib.types.str;
       default = "root";

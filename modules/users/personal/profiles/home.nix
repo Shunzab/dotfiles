@@ -1,5 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
-
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   home.username = "srs";
@@ -11,4 +16,3 @@
     fastfetch
   ];
 }
-

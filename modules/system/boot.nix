@@ -1,4 +1,9 @@
-{pkgs, config, lib, ...}:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   cfg = {
@@ -13,20 +18,25 @@ let
   };
 in
 {
-  options.mynixos.kernel = lib.mkOption {  
-    type = lib.types.enum [ "latest" "zen" "lts" ];  
-    default = "zen";  
-    description = "Which kernel variant to use.";  
-  };  
+  options.mynixos.kernel = lib.mkOption {
+    type = lib.types.enum [
+      "latest"
+      "zen"
+      "lts"
+    ];
+    default = "zen";
+    description = "Which kernel variant to use.";
+  };
 
-  options.mynixos.emeracc = lib.mkOption { # provides emergency access root shell initrd
-    type = lib.types.bool;  
+  options.mynixos.emeracc = lib.mkOption {
+    # provides emergency access root shell initrd
+    type = lib.types.bool;
     default = false;
     description = "whether to enable emergency access to shell";
   };
 
-  options.mynixos.hibernation = lib.mkOption { 
-    type = lib.types.bool;  
+  options.mynixos.hibernation = lib.mkOption {
+    type = lib.types.bool;
     default = true;
     description = "whether to enable hibernation";
   };
@@ -48,47 +58,50 @@ in
       consoleLogLevel = 0;
       initrd.verbose = false;
       kernelParams = [
-          "quiet"
-          "splash"
-          "rd.shell"
-          "loglevel=3"
-          "rd.systemd.show_status=false"
-          "rd.udev.log_level=3"
-          "udev.log_priority=3"
-          "vt.global_cursor_default=0"
-          "bgrt_disable"
+        "quiet"
+        "splash"
+        "rd.shell"
+        "loglevel=3"
+        "rd.systemd.show_status=false"
+        "rd.udev.log_level=3"
+        "udev.log_priority=3"
+        "vt.global_cursor_default=0"
+        "bgrt_disable"
+      ];
+      plymouth = {
+        enable = true;
+        theme = "connect";
+        themePackages = [
+          (pkgs.adi1090x-plymouth-themes.override {
+            selected_themes = [
+              "connect"
+              "colorful_loop"
+              "circuit"
+              "cubes"
+              "hexagon_hud"
+              "cross_hud"
+              "pixels"
+            ];
+          })
         ];
-      plymouth = {  
-        enable = true;  
-        theme = "connect";  
-        themePackages = [  
-          (pkgs.adi1090x-plymouth-themes.override {  
-            selected_themes = [  
-              "connect"  
-              "colorful_loop"  
-              "circuit"  
-              "cubes"  
-              "hexagon_hud"  
-              "cross_hud"  
-              "pixels"  
-            ];   
-          })  
-        ];  
-      };  
+      };
 
-      resumeDevice = if cfg.hibernation then "/dev/pool/swap" else ""; 
+      resumeDevice = if cfg.hibernation then "/dev/pool/swap" else "";
       initrd.systemd = {
         enable = true;
-        emergencyAccess = cfg.emeracc; #to change, remember
-        initrdBin = with pkgs; [iproute2 pciutils];
+        emergencyAccess = cfg.emeracc; # to change, remember
+        initrdBin = with pkgs; [
+          iproute2
+          pciutils
+        ];
       };
     };
 
-    swapDevices = [  
-      {  
-        device = "/dev/pool/swap";  
-        priority = 20;  
-      }  
+    swapDevices = [
+      {
+        device = "/dev/pool/swap";
+        priority = 20;
+      }
     ];
 
     zramSwap = {
