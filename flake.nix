@@ -70,12 +70,12 @@
                 overlays.nur
               ];
             }
+            #nix-flatpak.nixosModules.nix-flatpak
+            #hardware.nixosModules.lenovo-thinkpad-x390
             sops-nix.nixosModules.sops
             disko.nixosModules.disko
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
-            nix-flatpak.nixosModules.nix-flatpak
-            #hardware.nixosModules.lenovo-thinkpad-x390
             {
               home-manager = {
                 useGlobalPkgs = true;

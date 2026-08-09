@@ -72,7 +72,18 @@ in
         enable = cfg.hyprland;
         xwayland.enable = true;
       };
-      environment.systemPackages = with pkgs; [ hyprpolkitagent ];
+      environment.systemPackages = with pkgs; [
+        hyprpaper # Wallpaper daemon
+        hyprlock # Screen locker
+        hypridle # Idle management daemon (sleep/lock triggers)
+        hyprpicker # Wayland color picker
+        hyprsunset # Blue light filter
+        hyprpolkitagent
+      ];
+
+      environment.sessionVariables = {
+        NIXOS_OZONE_WL = "1"; # Force Electron apps to use native Wayland
+      };
     })
 
     (lib.mkIf cfg.waylandUtils {
@@ -87,25 +98,31 @@ in
 
       environment.systemPackages = with pkgs; [
         # Launchers
-        fuzzel # Minimalist, insanely fast Wayland launcher (replaces rofi)
+        fuzzel # Minimalist, insanely fast Wayland launcher
+
         # Audio & Screen OSD
         pavucontrol # Audio control GUI
-        playerctl # Media playback controls (play/pause/next for Waybar)
-        # Screenshots & Annotations
+        playerctl # Media playback controls
+        brightnessctl # Screen brightness controls (laptops/monitors)
+
+        # Screenshots & Color Picker
         grim # Screenshot capture backend
         slurp # Screen region selection
-        satty # Modern screenshot annotation tool (arrows, blur, text)
+        satty # Screenshot annotation tool
+
         # Clipboard Management
         wl-clipboard # Core Wayland clipboard CLI
         cliphist # Clipboard history manager
+
         # Utilities & System Info
         libnotify # Desktop notification trigger (notify-send)
         fastfetch # Modern system info fetch tool
+        btop # Resource & process monitor
+        imv # Lightweight image viewer
       ];
 
       fonts.packages = with pkgs; [
         nerd-fonts.jetbrains-mono
-        font-awesome
       ];
     })
 

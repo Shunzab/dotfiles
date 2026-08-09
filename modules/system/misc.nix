@@ -7,23 +7,6 @@
 }:
 
 {
-  # Fonts of the system
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      noto-fonts-color-emoji
-      source-code-pro
-      gentium
-      nerd-fonts.jetbrains-mono # or whichever variant you want
-    ];
-    #fontconfig.defaultFonts = {
-    #  serif = [ "Gentium" ];
-    #  sansSerif = [ "DejaVu Sans" ];
-    #  monospace = [ "Source Code Pro" ];
-    #  emoji = [ "Twitter Color Emoji" ];
-    #};
-  };
-
   # Audio
   services.pipewire = {
     enable = true;
@@ -36,7 +19,23 @@
 
   # allow unfree software and flatpak
   nixpkgs.config.allowUnfree = true;
-  services.flatpak.enable = true;
+  #services.flatpak.enable = true;
 
   # services.printing.enable = true; # printing support
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      # pkgs.xdg-desktop-portal-hyprland # Add this if you use Hyprland
+      #pkgs.xdg-desktop-portal-wlr # if u use sway
+    ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+        # If you use Hyprland, change to:
+        # default = [ "hyprland" "gtk" "wlr"];
+      };
+    };
+  };
 }
