@@ -95,14 +95,10 @@ in
           pciutils
         ];
       };
+      initrd.luks.devices."cryptroot" = {
+        device = "/dev/disk/by-partlabel/disk-main-NIXOS";
+      };
     };
-
-    swapDevices = [
-      {
-        device = "/dev/pool/swap";
-        priority = 20;
-      }
-    ];
 
     zramSwap = {
       enable = true;
