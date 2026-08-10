@@ -1,4 +1,10 @@
-{ pkgs, config, lib, inputs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  inputs,
+  ...
+}:
 
 # I haven't selected my fonts and themes just yet. They will be selected once I have an up and running system.
 {
@@ -75,7 +81,7 @@
 
     targets = {
       tmux.enable = false;
-      #neovim.enable = false; 
+      #neovim.enable = false;
     };
   };
 }

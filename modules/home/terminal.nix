@@ -1,13 +1,18 @@
-{config, lib, pkgs, ...};
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
-    bat         
-    eza         
-    ripgrep     
-    fd          
-    bottom      
-    du-dust     
+    bat
+    eza
+    ripgrep
+    fd
+    bottom
+    du-dust
   ];
 
   programs.zsh = {
@@ -55,7 +60,10 @@
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
-    options = [ "--cmd cd" "--no-aliases" ];
+    options = [
+      "--cmd cd"
+      "--no-aliases"
+    ];
   };
 
   programs.atuin = {
@@ -85,4 +93,4 @@
       ];
     };
   };
-}  
+}
