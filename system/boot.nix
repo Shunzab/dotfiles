@@ -49,10 +49,22 @@ in
           enable = true;
           configurationLimit = 10;
           editor = false;
+          consoleMode = "max";
         };
         efi.canTouchEfiVariables = true;
         timeout = 0;
-        systemd-boot.consoleMode = "max";
+      };
+
+      initrd.availableKernelModules = [ 
+        "nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" "sr_mod" "dm_mod" "dm_crypt" "cryptd"
+      ];
+      initrd.kernelModules = [ "dm-snapshot" "dm-raid" "dm-crypt" ];
+      initrd.services.lvm.enable = true;
+
+      initrd.luks.devices."cryptroot" = {
+        device = "/dev/disk/by-partlabel/disk-main-NIXOS";
+        allowDiscards = true;
+        preLVM = true;
       };
 
       consoleLogLevel = 0;
@@ -68,6 +80,7 @@ in
         #"vt.global_cursor_default=0"
         #"bgrt_disable"
       ];
+
       plymouth = {
         enable = false;
         theme = "connect";
