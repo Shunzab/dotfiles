@@ -8,13 +8,13 @@
 
 {
   imports = [
-    (inputs.self + "/modules/home/alacritty.nix") 
+    (inputs.self + "/modules/home/alacritty.nix")
     (inputs.self + "/modules/home/flatpak.nix")
-    (inputs.self + "/modules/home/nvim.nix") 
-    (inputs.self + "/modules/home/starship.nix") 
-    (inputs.self + "/modules/home/terminal.nix") 
-    (inputs.self + "/modules/home/tmux.nix") 
-    (inputs.self + "/modules/home/zed.nix") 
+    (inputs.self + "/modules/home/nvim.nix")
+    (inputs.self + "/modules/home/starship.nix")
+    (inputs.self + "/modules/home/terminal.nix")
+    (inputs.self + "/modules/home/tmux.nix")
+    (inputs.self + "/modules/home/zed.nix")
   ];
   home.username = "srs";
   home.homeDirectory = "/home/srs";

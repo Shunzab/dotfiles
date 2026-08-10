@@ -32,20 +32,20 @@ in
 
     # Language Servers, Linters, and Formatters installed directly via Nix
     extraPackages = with pkgs; [
-      nil                 # Nix LSP
+      nil # Nix LSP
       lua-language-server # Lua LSP
 
       # Formatters & Linters
-      alejandra           # Nix Formatter
-      stylua              # Lua Formatter
-      statix              # Nix Linter
-      ripgrep             # Required for Telescope live_grep
-      fd                  # Required for Telescope file finder
+      alejandra # Nix Formatter
+      stylua # Lua Formatter
+      statix # Nix Linter
+      ripgrep # Required for Telescope live_grep
+      fd # Required for Telescope file finder
     ];
 
     # Plugins managed by Nixpkgs
     plugins = with pkgs.vimPlugins; [
-      lz-n 
+      lz-n
       telescope-nvim
       plenary-nvim
       nvim-treesitter.withAllGrammars
