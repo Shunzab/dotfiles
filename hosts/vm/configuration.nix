@@ -8,13 +8,13 @@
 
 {
   imports = [
-    (inputs.self + "/modules/system/boot.nix")
-    (inputs.self + "/modules/system/graphics.nix")
-    (inputs.self + "/modules/system/misc.nix")
-    (inputs.self + "/modules/system/networking.nix")
-    (inputs.self + "/modules/system/stylix.nix")
-    (inputs.self + "/modules/users/personal/personal.nix")
-    ./hardware-configuration.nix
+    (inputs.self + "/system/boot.nix")
+    (inputs.self + "/system/graphics.nix")
+    (inputs.self + "/system/misc.nix")
+    (inputs.self + "/system/networking.nix")
+    (inputs.self + "/system/stylix.nix")
+    (inputs.self + "/users/personal/personal.nix")
+    ./disko.nix
   ];
 
   time.timeZone = "Asia/Karachi";
