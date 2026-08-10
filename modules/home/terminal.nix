@@ -13,6 +13,9 @@
     fd
     bottom
     du-dust
+
+    # for making devenvs in nix
+    devenv
   ];
 
   programs.zsh = {
@@ -92,5 +95,11 @@
         "^secret"
       ];
     };
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableZshIntegration = true; # Automatically hooks direnv into Zsh
   };
 }

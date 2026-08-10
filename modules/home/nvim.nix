@@ -1,5 +1,4 @@
 # gonna use lz-n to manage things, and its alot of work which is gonna extend beyond what i wanted it to extend to.
-
 {
   config,
   pkgs,
@@ -24,5 +23,49 @@ let
   selection = c.base02 or "#2e3c64";
 in
 {
+  xdg.configFile."nvim".source = ./configs/nvim;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
 
+    # Language Servers, Linters, and Formatters installed directly via Nix
+    extraPackages = with pkgs; [
+      nil                 # Nix LSP
+      lua-language-server # Lua LSP
+
+      # Formatters & Linters
+      alejandra           # Nix Formatter
+      stylua              # Lua Formatter
+      statix              # Nix Linter
+      ripgrep             # Required for Telescope live_grep
+      fd                  # Required for Telescope file finder
+    ];
+
+    # Plugins managed by Nixpkgs
+    plugins = with pkgs.vimPlugins; [
+      lz-n 
+      telescope-nvim
+      plenary-nvim
+      nvim-treesitter.withAllGrammars
+      nvim-lspconfig
+      conform-nvim
+      nvim-lint
+      blink-cmp
+      mini-pairs
+      mini-surround
+    ];
+
+    extraLuaConfig = ''
+      require("config.options")
+      require("themes.theme")
+      require("config.taskbar")
+      require("misc.qol")
+      require("config.transparency")
+      require("themes.indent_lines")
+      require("config.keybinds")
+      require("plugins.lzn")
+    '';
+  };
 }

@@ -5,23 +5,6 @@ if vim.fn.exists("syntax_on") == 1 then
 end
 vim.g.colors_name = "tokyo_night_moon"
 
--- 1. Palette definition (Hex values from your Alacritty TOML)
-
-local c = {
-  bg        = "#1a1b26",  
-  fg        = "#c0caf5", 
-  black     = "#15161e",  
-  red       = "#ff757f",
-  green     = "#c3e88d",
-  yellow    = "#ffc777",
-  blue      = "#82aaff",
-  magenta   = "#c099ff",
-  cyan      = "#86e1fc",
-  bright_blk= "#565f89",  
-  comment   = "#7a88cf",  
-  selection = "#2e3c64",  -- Higher contrast selection highlight (up from #2d3149)
-}
-
 -- Helper function to set highlights cleanly
 local function hl(group, settings)
   vim.api.nvim_set_hl(0, group, settings)
@@ -55,3 +38,4 @@ hl("iCursor", { bg = c.yellow, fg = c.black })
 
 -- Sets Insert mode (i) cursor to a yellow vertical bar (ver25)
 vim.opt.guicursor = "n-v-c:block-Cursor,i-ci-ve:ver25-iCursor,r-cr:hor20-Cursor"
+

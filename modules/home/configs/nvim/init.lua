@@ -5,4 +5,3 @@ require("misc.qol")
 require("config.transparency")
 require("themes.indent_lines")
 require("config.keybinds")
-
