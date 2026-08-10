@@ -12,7 +12,6 @@ let
   black     = c.base00 or "#15161e";
   red       = c.base08 or "#ff757f";
   green     = c.base0B or "#c3e88d";
-
   yellow    = c.base0A or "#ffc777";
   blue      = c.base0D or "#82aaff";
   magenta   = c.base0E or "#c099ff";
@@ -21,4 +20,6 @@ let
   comment   = c.base04 or "#7a88cf";
   selection = c.base02 or "#2e3c64";
 in
-{}
+{
+
+}

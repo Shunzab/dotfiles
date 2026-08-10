@@ -22,20 +22,5 @@
   #services.flatpak.enable = true;
 
   # services.printing.enable = true; # printing support
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      # pkgs.xdg-desktop-portal-hyprland # Add this if you use Hyprland
-      #pkgs.xdg-desktop-portal-wlr # if u use sway
-    ];
-    config = {
-      common = {
-        default = [ "gtk" ];
-        # If you use Hyprland, change to:
-        # default = [ "hyprland" "gtk" "wlr"];
-      };
-    };
-  };
+  programs.nix-ld.enable = true;
 }
