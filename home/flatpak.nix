@@ -41,9 +41,9 @@
           "/nix/store:ro"
           "!home"
         ];
-        Environment = {
-          GTK_THEME = "Adwaita:dark"; # remember to put in stylix config too, so that gtk4 apps can also be themed
-        };
+        Environment = [
+          "GTK_THEME=Adwaita:dark" # remember to put in stylix config too, so that gtk4 apps can also be themed
+        ];
         talk-to-bus = [
           "org.freedesktop.portal.Desktop"
           "org.freedesktop.Notifications"

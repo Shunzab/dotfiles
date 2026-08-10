@@ -57,7 +57,7 @@ in
       };
 
       # all styling will be done in stylix module
-      programs.regreet = {
+      services.displayManager.regreet = {
         enable = cfg.sway || cfg.hyprland;
       };
 
@@ -91,14 +91,16 @@ in
         waybar.enable = true;
       };
       services = {
-        swaync.enable = true;
         hypridle.enable = true;
-        swayosd.enable = true;
       };
+
+      hardware.uinput.enable = true;
 
       environment.systemPackages = with pkgs; [
         # Launchers
         fuzzel # Minimalist, insanely fast Wayland launcher
+        swaynotificationcenter
+        swayosd
 
         # Audio & Screen OSD
         pavucontrol # Audio control GUI
@@ -128,7 +130,8 @@ in
 
     (lib.mkIf cfg.kde {
       #services.xserver.enable = true; # use this if you strictly need x11.
-      services.displaymanager = {
+      #stylix.targets.qt.platform = "qtct";
+      services.displayManager = {
         sddm.enable = true;
         defaultSession = "plasma";
       };

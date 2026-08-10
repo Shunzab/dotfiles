@@ -12,7 +12,7 @@
     ripgrep
     fd
     bottom
-    du-dust
+    dust
 
     # for making devenvs in nix
     devenv
@@ -43,7 +43,7 @@
       cl = "clear";
     };
 
-    initExtra = ''
+    initContent = ''
       # Options
       setopt prompt_subst
       setopt auto_cd

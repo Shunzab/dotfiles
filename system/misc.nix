@@ -23,4 +23,6 @@
 
   # services.printing.enable = true; # printing support
   programs.nix-ld.enable = true;
+
+  programs.zsh.enable = true;
 }

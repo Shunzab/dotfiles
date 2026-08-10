@@ -43,11 +43,11 @@
         name = "DejaVu Sans";
       };
       monospace = {
-        package = pkgs.nerd-fonts.jet-brains-mono;
+        package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
 
@@ -65,7 +65,7 @@
       size = 24;
     };
 
-    iconTheme = {
+    icons = {
       enable = true;
       package = pkgs.tela-circle-icon-theme;
       dark = "Tela-circle-dark";
@@ -78,10 +78,7 @@
       desktop = 1.0;
       popups = 0.9;
     };
-
-    targets = {
-      tmux.enable = false;
-      #neovim.enable = false;
-    };
   };
+
+  stylix.targets.plymouth.enable = false;
 }

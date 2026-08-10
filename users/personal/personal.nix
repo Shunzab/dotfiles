@@ -17,6 +17,7 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     shell = user_shell;
+    initialPassword = "changeme";
   };
 
   home-manager = lib.mkIf has_home_manager {

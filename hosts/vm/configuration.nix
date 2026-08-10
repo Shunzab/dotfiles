@@ -14,6 +14,7 @@
     (inputs.self + "/modules/system/networking.nix")
     (inputs.self + "/modules/system/stylix.nix")
     (inputs.self + "/modules/users/personal/personal.nix")
+    ./hardware-configuration.nix
   ];
 
   time.timeZone = "Asia/Karachi";

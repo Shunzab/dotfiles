@@ -3,6 +3,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 
@@ -23,7 +24,7 @@ let
   selection = c.base02 or "#2e3c64";
 in
 {
-  xdg.configFile."nvim".source = ./configs/nvim;
+  xdg.configFile."nvim".source = ../configs/nvim;
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -57,7 +58,7 @@ in
       mini-surround
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       require("config.options")
       require("themes.theme")
       require("config.taskbar")
