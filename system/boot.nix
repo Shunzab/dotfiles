@@ -58,18 +58,18 @@ in
       consoleLogLevel = 0;
       initrd.verbose = false;
       kernelParams = [
-        "quiet"
-        "splash"
-        "rd.shell"
-        "loglevel=3"
-        "rd.systemd.show_status=false"
-        "rd.udev.log_level=3"
-        "udev.log_priority=3"
-        "vt.global_cursor_default=0"
-        "bgrt_disable"
+        #"quiet"
+        #"splash"
+        #"rd.shell"
+        #"loglevel=3"
+        #"rd.systemd.show_status=false"
+        #"rd.udev.log_level=3"
+        #"udev.log_priority=3"
+        #"vt.global_cursor_default=0"
+        #"bgrt_disable"
       ];
       plymouth = {
-        enable = true;
+        enable = false;
         theme = "connect";
         themePackages = [
           (pkgs.adi1090x-plymouth-themes.override {
