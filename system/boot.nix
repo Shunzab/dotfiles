@@ -101,8 +101,8 @@ in
 
       resumeDevice = if cfg.hibernation then "/dev/pool/swap" else "";
       initrd.systemd = {
-        enable = true;
-        emergencyAccess = cfg.emeracc; # to change, remember
+        enable = true; # to change
+        emergencyAccess = true; # to change, remember
         initrdBin = with pkgs; [
           iproute2
           pciutils

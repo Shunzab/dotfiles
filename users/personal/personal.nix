@@ -7,7 +7,8 @@
 }:
 
 let
-  user_shell = if (pkgs ? zsh) then pkgs.zsh else pkgs.bash;
+  is_zsh_enabled = config.programs.zsh.enable or false;
+  user_shell = if is_zsh_enabled then pkgs.zsh else pkgs.bash;
   has_home_manager = options ? home-manager;
 in
 {
