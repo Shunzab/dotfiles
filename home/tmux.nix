@@ -5,19 +5,19 @@
   ...
 }:
 let
-  thm_bg = "#1a1b26"; 
-  thm_fg = "#c0caf5";
-  thm_cyan="#86e1fc";
-  thm_black="#15161e";
-  thm_gray="#2e3c64";
-  thm_magenta="#c099ff";
-  thm_pink="#ff757f";
-  thm_red="#ff757f";
-  thm_green="#c3e88d";
-  thm_yellow="#ffc777";
-  thm_blue="#82aaff";
-  thm_orange="#ff9e64";
-  thm_black4="#565f89";
+thm_bg="#222436";
+thm_fg="#c8d3f5";
+thm_cyan="#86e1fc";
+thm_black="#1b1d2b";
+thm_gray="#3a3f5a";
+thm_magenta="#c099ff";
+thm_pink="#ff757f";
+thm_red="#ff757f";
+thm_green="#c3e88d";
+thm_yellow="#ffc777";
+thm_blue="#82aaff";
+thm_orange="#ff9e64";
+thm_black4="#444a73";
 in
 {
   stylix.targets.tmux.enable = false;
