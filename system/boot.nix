@@ -76,8 +76,8 @@ in
       ];
 
       plymouth = {
-        enable = circuit;
-        theme = "connect";
+        enable = true;
+        theme = "pixels";
         themePackages = [
           (pkgs.adi1090x-plymouth-themes.override {
             selected_themes = [
