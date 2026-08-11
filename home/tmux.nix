@@ -4,23 +4,20 @@
   pkgs,
   ...
 }:
-
 let
-  c = if (config ? lib.stylix.colors.withHashtag) then config.lib.stylix.colors.withHashtag else { };
-
-  thm_bg = c.base00 or "#1a1b26";
-  thm_fg = c.base05 or "#c0caf5";
-  thm_cyan = c.base0C or "#86e1fc";
-  thm_black = c.base00 or "#15161e";
-  thm_gray = c.base03 or "#2e3c64";
-  thm_magenta = c.base0E or "#c099ff";
-  thm_pink = c.base08 or "#ff757f";
-  thm_red = c.base08 or "#ff757f";
-  thm_green = c.base0B or "#c3e88d";
-  thm_yellow = c.base0A or "#ffc777";
-  thm_blue = c.base0D or "#82aaff";
-  thm_orange = c.base09 or "#ff9e64";
-  thm_black4 = c.base02 or "#565f89";
+  thm_bg = "#1a1b26"; 
+  thm_fg = "#c0caf5";
+  thm_cyan="#86e1fc";
+  thm_black="#15161e";
+  thm_gray="#2e3c64";
+  thm_magenta="#c099ff";
+  thm_pink="#ff757f";
+  thm_red="#ff757f";
+  thm_green="#c3e88d";
+  thm_yellow="#ffc777";
+  thm_blue="#82aaff";
+  thm_orange="#ff9e64";
+  thm_black4="#565f89";
 in
 {
   stylix.targets.tmux.enable = false;

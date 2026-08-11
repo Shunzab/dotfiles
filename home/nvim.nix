@@ -52,7 +52,6 @@ in
       require("themes.theme")
       require("config.taskbar")
       require("misc.qol")
-      require("config.transparency")
       require("themes.indent_lines")
       require("config.keybinds")
       require("plugins.lzn")
