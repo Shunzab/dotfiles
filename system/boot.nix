@@ -31,13 +31,13 @@ in
   options.mynixos.emeracc = lib.mkOption {
     # provides emergency access root shell initrd
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "whether to enable emergency access to shell";
   };
 
   options.mynixos.hibernation = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "whether to enable hibernation";
   };
 
@@ -61,11 +61,11 @@ in
       initrd.kernelModules = [ "dm-snapshot" "dm-raid" "dm-crypt" ];
       initrd.services.lvm.enable = true;
 
-      initrd.luks.devices."cryptroot" = {
-        device = "/dev/disk/by-partlabel/disk-main-NIXOS";
-        allowDiscards = true;
-        preLVM = true;
-      };
+      #initrd.luks.devices."cryptroot" = {
+      #  device = "/dev/disk/by-partlabel/disk-main-NIXOS";
+      #  allowDiscards = true;
+      #  preLVM = true;
+      #};
 
       consoleLogLevel = 0;
       initrd.verbose = false;
