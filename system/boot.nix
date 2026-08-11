@@ -61,11 +61,11 @@ in
       initrd.kernelModules = [ "dm-snapshot" "dm-raid" "dm-crypt" ];
       initrd.services.lvm.enable = true;
 
-      #initrd.luks.devices."cryptroot" = {
-      #  device = "/dev/disk/by-partlabel/disk-main-NIXOS";
-      #  allowDiscards = true;
-      #  preLVM = true;
-      #};
+      initrd.luks.devices."cryptroot" = {
+        device = "/dev/sda2";
+        allowDiscards = true;
+        preLVM = true;
+      };
 
       consoleLogLevel = 0;
       initrd.verbose = false;
