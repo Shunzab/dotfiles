@@ -46,15 +46,5 @@ in
       mini-nvim
       rainbow-delimiters-nvim
     ];
-
-    initLua = ''
-      require("config.options")
-      require("themes.theme")
-      require("config.taskbar")
-      require("misc.qol")
-      require("themes.indent_lines")
-      require("config.keybinds")
-      require("plugins.lzn")
-    '';
   };
 }

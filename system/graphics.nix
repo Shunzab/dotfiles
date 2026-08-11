@@ -17,7 +17,7 @@ in
 {
   options.mynixos.kde = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "enable kde";
   };
 
