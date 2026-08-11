@@ -123,37 +123,13 @@ in
       #stylix.targets.qt.platform = "qtct";
       services.displayManager = {
         sddm.enable = true;
+        sddm.wayland.enable = true;
         defaultSession = "plasma";
       };
       services.desktopManager.plasma6 = {
         enable = true;
-        enableQt5Integration = false;
       };
       programs.kde-pim.enable = false;
-      services.power-profiles-daemon.enable = true;
-      environment.plasma6.excludePackages = with pkgs.kdePackages; [
-        aurorae
-        plasma-browser-integration
-        plasma-workspace-wallpapers
-        konsole
-        kwin-x11
-        ark
-        elisa
-        gwenview
-        okular
-        kate
-        ktexteditor
-        khelpcenter
-        #dolphin
-        baloo-widgets
-        #dolphin-plugins
-        spectacle
-        ffmpegthumbs
-        krdp
-        #plasma-keyboard
-        qtvirtualkeyboard
-        union
-      ];
     })
   ];
 }
