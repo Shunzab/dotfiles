@@ -30,6 +30,7 @@
 
   home.packages = with pkgs; [
     fastfetch
+    home-manager
   ];
 
   programs.git = {

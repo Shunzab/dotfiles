@@ -21,7 +21,7 @@
       command_timeout = 1000;
 
       character = {
-        vicmd_symbol = "[N] >>>";
+        vicmd_symbol = "\\[N\\] >>>";
         success_symbol = "[➜](bold green)";
       };
 

@@ -42,13 +42,8 @@ in
   config = lib.mkMerge [
     {
       hardware.graphics = {
-        enable = true;
-        enable32Bit = true;
-
-        extraPackages = with pkgs; [
-          intel-media-driver
-          intel-compute-runtime
-        ];
+        enable = isWaylandWM || cfg.kde;
+        enable32Bit = isWaylandWM || cfg.kde;
       };
 
       programs.sway = {
@@ -62,8 +57,8 @@ in
       };
 
       # for clean login when you have a login manager.
-      systemd.services."getty@tty1".enable = !(isWaylandWM);
-      systemd.services."autovt@tty1".enable = !(isWaylandWM);
+      #systemd.services."getty@tty1".enable = !(isWaylandWM);
+      #systemd.services."autovt@tty1".enable = !(isWaylandWM);
 
     }
 
@@ -72,14 +67,6 @@ in
         enable = cfg.hyprland;
         xwayland.enable = true;
       };
-      environment.systemPackages = with pkgs; [
-        hyprpaper # Wallpaper daemon
-        hyprlock # Screen locker
-        hypridle # Idle management daemon (sleep/lock triggers)
-        hyprpicker # Wayland color picker
-        hyprsunset # Blue light filter
-        hyprpolkitagent
-      ];
 
       environment.sessionVariables = {
         NIXOS_OZONE_WL = "1"; # Force Electron apps to use native Wayland
@@ -90,12 +77,7 @@ in
       programs = {
         waybar.enable = true;
       };
-      services = {
-        hypridle.enable = true;
-      };
-
       hardware.uinput.enable = true;
-
       environment.systemPackages = with pkgs; [
         # Launchers
         fuzzel # Minimalist, insanely fast Wayland launcher
@@ -121,6 +103,14 @@ in
         fastfetch # Modern system info fetch tool
         btop # Resource & process monitor
         imv # Lightweight image viewer
+
+        hyprpaper # Wallpaper daemon
+        hyprlock # Screen locker
+        hypridle # Idle management daemon (sleep/lock triggers)
+        hyprpicker # Wayland color picker
+        hyprsunset # Blue light filter
+        hyprpolkitagent
+
       ];
 
       fonts.packages = with pkgs; [

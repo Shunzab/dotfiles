@@ -5,7 +5,7 @@ lz.load({
   {
     "mini.trailspace",
     event = { "BufReadPost", "BufNewFile" },
-    after = function()
+    after = function()  
       require("mini.trailspace").setup()
     end,
   },
