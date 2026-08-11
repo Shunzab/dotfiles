@@ -61,28 +61,22 @@ in
       initrd.kernelModules = [ "dm-snapshot" "dm-raid" "dm-crypt" ];
       initrd.services.lvm.enable = true;
 
-      initrd.luks.devices."cryptroot" = {
-        device = "/dev/sda2";
-        allowDiscards = true;
-        preLVM = true;
-      };
-
       consoleLogLevel = 0;
       initrd.verbose = false;
       kernelParams = [
-        #"quiet"
+        "quiet"
         #"splash"
         #"rd.shell"
-        #"loglevel=3"
-        #"rd.systemd.show_status=false"
-        #"rd.udev.log_level=3"
-        #"udev.log_priority=3"
-        #"vt.global_cursor_default=0"
+        "loglevel=3"
+        "rd.systemd.show_status=false"
+        "rd.udev.log_level=3"
+        "udev.log_priority=3"
+        "vt.global_cursor_default=0"
         #"bgrt_disable"
       ];
 
       plymouth = {
-        enable = false;
+        enable = circuit;
         theme = "connect";
         themePackages = [
           (pkgs.adi1090x-plymouth-themes.override {
@@ -102,7 +96,7 @@ in
       resumeDevice = if cfg.hibernation then "/dev/pool/swap" else "";
       initrd.systemd = {
         enable = true; # to change
-        emergencyAccess = true; # to change, remember
+        emergencyAccess = cfg.emeracc; # to change, remember
         initrdBin = with pkgs; [
           iproute2
           pciutils

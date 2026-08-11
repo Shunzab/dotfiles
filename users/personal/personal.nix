@@ -21,7 +21,7 @@ in
     initialPassword = "changeme";
   };
 
-  #home-manager = lib.mkIf has_home_manager {
-  #  users.srs = import ./profiles/home.nix;
-  #};
+  home-manager = lib.mkIf has_home_manager {
+    users.srs = import ./profiles/home.nix;
+  };
 }

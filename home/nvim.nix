@@ -33,13 +33,6 @@ in
 
     # Language Servers, Linters, and Formatters installed directly via Nix
     extraPackages = with pkgs; [
-      nil # Nix LSP
-      lua-language-server # Lua LSP
-
-      # Formatters & Linters
-      alejandra # Nix Formatter
-      stylua # Lua Formatter
-      statix # Nix Linter
       ripgrep # Required for Telescope live_grep
       fd # Required for Telescope file finder
     ];
@@ -48,14 +41,10 @@ in
     plugins = with pkgs.vimPlugins; [
       lz-n
       telescope-nvim
-      plenary-nvim
       nvim-treesitter.withAllGrammars
-      nvim-lspconfig
-      conform-nvim
       nvim-lint
-      blink-cmp
-      mini-pairs
-      mini-surround
+      mini-nvim
+      rainbow-delimiters-nvim
     ];
 
     initLua = ''

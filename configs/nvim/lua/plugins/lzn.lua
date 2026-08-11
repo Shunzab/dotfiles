@@ -1,22 +1,75 @@
 local lz = require("lz.n")
 
 lz.load({
+-- 1. Unnecessary Whitespace Highlighting & Trimming
   {
-    "mini.pairs",
-    event = "InsertEnter",
+    "mini.trailspace",
+    event = { "BufReadPost", "BufNewFile" },
     after = function()
+      require("mini.trailspace").setup()
+    end,
+  },
 
-      require("mini.pairs").setup()
+  -- 2. Colorize Hex Codes (and RGB, HSL, CSS colors)
+  {
+    "mini.hipatterns",
+    event = { "BufReadPost", "BufNewFile" },
+    after = function()
+      local hipatterns = require("mini.hipatterns")
+      hipatterns.setup({
+        highlighters = {
+          -- Highlight standalone hex color strings (#ff0000)
+          hex_color = hipatterns.gen_highlighter.hex_color(),
+        },
+      })
+    end,
+  },
+
+  -- 3. Git Integration (Hunk indicators in signcolumn + status)
+  {
+    "mini.diff",
+    event = { "BufReadPost", "BufNewFile" },
+    after = function()
+      require("mini.diff").setup()
     end,
   },
   {
-    "mini.surround",
+    "mini.git",
+    event = "VeryLazy",
+    after = function()
+      require("mini.git").setup()
+    end,
+  },
+
+  -- 4. Animations (Cursor, scrolling, window resizing)
+  {
+    "mini.animate",
     event = "UIEnter",
     after = function()
-      require("mini.surround").setup()
+      require("mini.animate").setup()
     end,
   },
 
+  -- 5. Start Screen
+  {
+    "mini.starter",
+    event = "VimEnter",
+    after = function()
+      require("mini.starter").setup()
+    end,
+  },
+
+  -- 6. Rainbow Brackets (using rainbow-delimiters.nvim)
+  {
+    "rainbow-delimiters.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    after = function()
+      -- Automatically hooks into Tree-sitter parsers out of the box
+      require("rainbow-delimiters.setup").setup({})
+    end,
+  },
+
+  -- Treesitter
   {
     "nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
@@ -28,6 +81,7 @@ lz.load({
     end,
   },
 
+  -- Telescope
   {
     "telescope.nvim",
     keys = {
@@ -38,74 +92,7 @@ lz.load({
     },
   },
 
-  {
-    "blink.cmp",
-    event = "InsertEnter",
-    after = function()
-      require("blink.cmp").setup({
-        keymap = { preset = "default" },
-        appearance = { use_nvim_cmp_as_default = true },
-        sources = { default = { "lsp", "path", "snippets", "buffer" } },
-      })
-    end,
-  },
-
-  {
-    "nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile" },
-    after = function()
-      local lspconfig = require("lspconfig")
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-
-      vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(event)
-          local builtin = require("telescope.builtin")
-          vim.keymap.set("n", "gd",         vim.lsp.buf.definition,   { buffer = event.buf, desc = "Go to definition" })
-          vim.keymap.set("n", "K",          vim.lsp.buf.hover,        { buffer = event.buf, desc = "Hover docs" })
-          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,       { buffer = event.buf, desc = "Rename symbol" })
-          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,  { buffer = event.buf, desc = "Code actions" })
-          vim.keymap.set("n", "gr",         builtin.lsp_references,   { buffer = event.buf, desc = "Go to references" })
-          vim.keymap.set("n", "[d",         vim.diagnostic.goto_prev, { buffer = event.buf, desc = "Previous diagnostic" })
-          vim.keymap.set("n", "]d",         vim.diagnostic.goto_next, { buffer = event.buf, desc = "Next diagnostic" })
-        end,
-      })
-
-      local servers = { "nil_ls", "lua_ls" }
-      for _, lsp in ipairs(servers) do
-        lspconfig[lsp].setup({ capabilities = capabilities })
-      end
-    end,
-
-  },
-
-  {
-    "conform.nvim",
-    event = "BufWritePre",
-    keys = {
-      {
-        "<leader>f",
-        function()
-          require("conform").format({ async = false, lsp_fallback = true })
-        end,
-        mode = { "n", "v" },
-        desc = "Format current buffer",
-      },
-    },
-    after = function()
-      require("conform").setup({
-        formatters_by_ft = {
-          nix = { "alejandra" },
-          lua = { "stylua" },
-        },
-        format_on_save = {
-          timeout_ms = 500,
-          lsp_fallback = true,
-        },
-      })
-    end,
-  },
-
+  -- nvim-lint
   {
     "nvim-lint",
     event = { "BufReadPost", "BufWritePost" },
