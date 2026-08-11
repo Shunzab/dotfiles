@@ -505,7 +505,8 @@ local function get_search_count()
     total = tostring(res.maxcount or res.total) .. "+"
   end
 
-  return "%#StSearch#  " .. res.current .. "/" .. total .. " %#StBg#"
+  -- The fix is in the line below: (res.current or 0)
+  return "%#StSearch#  " .. (res.current or 0) .. "/" .. total .. " %#StBg#"
 end
 
 local function get_macro_recording()
