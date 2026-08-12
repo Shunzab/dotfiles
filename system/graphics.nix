@@ -17,7 +17,7 @@ in
 {
   options.mynixos.kde = lib.mkOption {
     type = lib.types.bool;
-    default = true;
+    default = false;
     description = "enable kde";
   };
 
@@ -29,7 +29,7 @@ in
 
   options.mynixos.hyprland = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "enable hyprland";
   };
 
@@ -53,7 +53,7 @@ in
 
       # all styling will be done in stylix module
       services.displayManager.regreet = {
-        enable = cfg.sway || cfg.hyprland;
+        enable = false;
       };
 
       # for clean login when you have a login manager.
@@ -66,10 +66,6 @@ in
       programs.hyprland = {
         enable = cfg.hyprland;
         xwayland.enable = true;
-      };
-
-      environment.sessionVariables = {
-        NIXOS_OZONE_WL = "1"; # Force Electron apps to use native Wayland
       };
     })
 
