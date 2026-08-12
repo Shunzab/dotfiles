@@ -12,14 +12,10 @@
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      # pkgs.xdg-desktop-portal-hyprland # Add this if you use Hyprland
-      #pkgs.xdg-desktop-portal-wlr # if u use sway
     ];
     config = {
       common = {
         default = [ "gtk" ];
-        # If you use Hyprland, change to:
-        # default = [ "hyprland" "gtk" "wlr"];
       };
     };
   };
