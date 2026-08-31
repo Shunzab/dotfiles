@@ -55,10 +55,22 @@ in
         timeout = 0;
       };
 
-      initrd.availableKernelModules = [ 
-        "nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" "sr_mod" "dm_mod" "dm_crypt" "cryptd"
+      initrd.availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "ahci"
+        "usb_storage"
+        "sd_mod"
+        "sr_mod"
+        "dm_mod"
+        "dm_crypt"
+        "cryptd"
       ];
-      initrd.kernelModules = [ "dm-snapshot" "dm-raid" "dm-crypt" ];
+      initrd.kernelModules = [
+        "dm-snapshot"
+        "dm-raid"
+        "dm-crypt"
+      ];
       initrd.services.lvm.enable = true;
 
       consoleLogLevel = 0;

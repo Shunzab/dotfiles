@@ -63,7 +63,6 @@
         config = builtins.readFile ./lua/lint.lua;
       }
 
-
       {
         plugin = blink-cmp;
         type = "lua";
@@ -88,13 +87,11 @@
         config = builtins.readFile ./lua/mini.lua;
       }
 
-
       {
         plugin = rainbow-delimiters-nvim;
         type = "lua";
         config = builtins.readFile ./lua/rainbow-delimiters.lua;
       }
-
 
       {
         plugin = trouble-nvim;
@@ -108,4 +105,3 @@
     '';
   };
 }
-
