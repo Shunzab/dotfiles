@@ -74,7 +74,7 @@ in
       # Windows & sessions
       bind -n M-C new-window -c "#{pane_current_path}"
       bind -n M-s choose-tree -s
-      bind -n M-R source-file ${config.xdg.configHome}/tmux/tmux.conf \; display-message "Reloaded"
+      #bind -n M-R source-file ${config.xdg.configHome}/tmux/tmux.conf \; display-message "Reloaded"
 
       # Alt+hjkl pane switching
 
