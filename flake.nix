@@ -91,6 +91,35 @@
             ./hosts/vm/configuration.nix
           ];
         };
+           
+        laptop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              nixpkgs.overlays = [
+                overlays.stable
+                overlays.nur
+              ];
+            }
+            #nix-flatpak.nixosModules.nix-flatpak
+            #hardware.nixosModules.lenovo-thinkpad-x390
+            sops-nix.nixosModules.sops
+            disko.nixosModules.disko
+            stylix.nixosModules.stylix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; };
+                backupFileExtension = "backup";
+              };
+            }
+            ./hosts/laptop/configuration.nix
+          ];
+        };
+        
       };
     };
 }

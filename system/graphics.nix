@@ -17,7 +17,7 @@ in
 {
   options.mynixos.kde = lib.mkOption {
     type = lib.types.bool;
-    default = false;
+    default = true;
     description = "enable kde";
   };
 
@@ -29,7 +29,7 @@ in
 
   options.mynixos.hyprland = lib.mkOption {
     type = lib.types.bool;
-    default = true;
+    default = false;
     description = "enable hyprland";
   };
 
@@ -53,7 +53,7 @@ in
 
       # all styling will be done in stylix module
       services.displayManager.regreet = {
-        enable = false;
+        enable = isWaylandWM;
       };
 
       # for clean login when you have a login manager.

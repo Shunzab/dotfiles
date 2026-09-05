@@ -8,7 +8,7 @@
 {
   networking = {
 
-    hostName = "vm";
+    hostName = "laptop";
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";

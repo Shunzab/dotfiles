@@ -24,7 +24,7 @@ in
       "zen"
       "lts"
     ];
-    default = "zen";
+    default = "latest";
     description = "Which kernel variant to use.";
   };
 
@@ -52,7 +52,7 @@ in
           consoleMode = "max";
         };
         efi.canTouchEfiVariables = true;
-        timeout = 0;
+        timeout = 10;
       };
 
       initrd.availableKernelModules = [
@@ -76,20 +76,20 @@ in
       consoleLogLevel = 0;
       initrd.verbose = false;
       kernelParams = [
-        "quiet"
+        #"quiet"
         #"splash"
         #"rd.shell"
-        "loglevel=3"
-        "rd.systemd.show_status=false"
-        "rd.udev.log_level=3"
-        "udev.log_priority=3"
-        "vt.global_cursor_default=0"
+        #"loglevel=3"
+        #"rd.systemd.show_status=false"
+        #"rd.udev.log_level=3"
+        #"udev.log_priority=3"
+        #"vt.global_cursor_default=0"
         #"bgrt_disable"
       ];
 
       plymouth = {
         enable = true;
-        theme = "pixels";
+        theme = "cross_hud";
         themePackages = [
           (pkgs.adi1090x-plymouth-themes.override {
             selected_themes = [

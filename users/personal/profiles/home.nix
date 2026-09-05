@@ -21,12 +21,12 @@
   programs.home-manager.enable = true;
   home.stateVersion = "26.05"; # no changing this
 
-  stylix.targets = {
-    tmux.enable = false;
-    alacritty.enable = true;
-    starship.enable = true;
-    zed.enable = true;
-  };
+  #stylix.targets = {
+  #  tmux.enable = false;
+  #  alacritty.enable = true;
+  #  starship.enable = true;
+  #  zed.enable = true;
+  #};
 
   home.packages = with pkgs; [
     fastfetch

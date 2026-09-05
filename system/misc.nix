@@ -26,4 +26,15 @@
 
   programs.zsh.enable = true;
   services.flatpak.enable = true;
+
+  # bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
 }
