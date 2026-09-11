@@ -50,7 +50,9 @@ mount /dev/nvme0n1p6 /mnt/boot
 
 nixos-generate-config --root /mnt
 
-
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ./disko-config.nix
 sudo nix --extra-experimental-features "nix-command flakes" nixos-install --flake .#laptop
+
+
 
 
