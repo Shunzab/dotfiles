@@ -12,6 +12,7 @@
     (inputs.self + "/system/graphics.nix")
     (inputs.self + "/system/misc.nix")
     (inputs.self + "/system/networking.nix")
+    (inputs.self + "/system/stylix.nix")
     (inputs.self + "/users/personal/personal.nix")
     ./hardware-configuration.nix
     ./disko_dualboot.nix
