@@ -12,13 +12,12 @@
 
     settings = {
       add_newline = true;
-      scan_timeout = 0;
-      format = "$all\n$directory$character";
+      scan_timeout = 100;
+      format = "$directory$character";
+      right_format = "$all";
+      line_break.disabled = true;
 
-      line_break = {
-        disabled = true;
-      };
-      command_timeout = 1000;
+      command_timeout = 100;
 
       character = {
         vicmd_symbol = "\\[N\\] >>>";

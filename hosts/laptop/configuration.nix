@@ -25,6 +25,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    cava
   ];
   system.stateVersion = "26.05";
 }

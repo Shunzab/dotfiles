@@ -70,6 +70,7 @@ in
         "dm-snapshot"
         "dm-raid"
         "dm-crypt"
+        "i915"
       ];
       initrd.services.lvm.enable = true;
 
