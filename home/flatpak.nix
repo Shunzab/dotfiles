@@ -16,6 +16,8 @@
   services.flatpak.packages = [
     "md.obsidian.Obsidian"
     "org.mozilla.firefox"
+    "com.github.IsmaelMartinez.teams_for_linux"
+
   ];
 
   services.flatpak.update.onActivation = true;

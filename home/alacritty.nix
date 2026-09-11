@@ -19,7 +19,7 @@
           x = 0;
           y = 0;
         };
-        decorations = "None"; # Options: "Full", "None" (borderless), "Transparent"
+        decorations = "Transparent"; # Options: "Full", "None" (borderless), "Transparent"
         blur = true;
         dynamic_padding = true;
         resize_increments = true;

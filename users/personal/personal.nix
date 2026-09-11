@@ -16,7 +16,7 @@ in
 
   users.users.srs = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "video" "render"];
     shell = user_shell;
     initialPassword = "changeme";
   };

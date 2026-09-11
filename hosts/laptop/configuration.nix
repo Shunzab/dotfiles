@@ -14,6 +14,7 @@
     (inputs.self + "/system/networking.nix")
     (inputs.self + "/users/personal/personal.nix")
     ./hardware-configuration.nix
+    ./disko_dualboot.nix
   ];
 
   time.timeZone = "Asia/Karachi";

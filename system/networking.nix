@@ -11,7 +11,7 @@
     hostName = "laptop";
     networkmanager = {
       enable = true;
-      wifi.backend = "iwd";
+      #wifi.backend = "iwd";
       wifi.powersave = true;
     };
 

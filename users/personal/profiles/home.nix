@@ -31,7 +31,9 @@
   home.packages = with pkgs; [
     fastfetch
     home-manager
+    nerd-fonts.jetbrains-mono
   ];
+  fonts.fontconfig.enable = true;
 
   programs.git = {
     enable = true;

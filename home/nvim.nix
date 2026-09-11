@@ -43,6 +43,7 @@ in
       telescope-nvim
       nvim-treesitter.withAllGrammars
       nvim-lint
+      plenary-nvim
       mini-nvim
       rainbow-delimiters-nvim
     ];

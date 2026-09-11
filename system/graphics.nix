@@ -42,8 +42,8 @@ in
   config = lib.mkMerge [
     {
       hardware.graphics = {
-        enable = isWaylandWM || cfg.kde;
-        enable32Bit = isWaylandWM || cfg.kde;
+        enable = true;
+        enable32Bit = true;
       };
 
       programs.sway = {
