@@ -26,6 +26,9 @@
 
   environment.systemPackages = with pkgs; [
     cava
+    signal-desktop
+    cloudflare-warp
   ];
+  services.cloudflare-warp.enable = true;
   system.stateVersion = "26.05";
 }
