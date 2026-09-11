@@ -26,7 +26,7 @@ let
 
 in
 {
-  stylix.targets.tmux.enable = false;
+  #stylix.targets.tmux.enable = false;
 
   programs.tmux = {
     enable = true;
