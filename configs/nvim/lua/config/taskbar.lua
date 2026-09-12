@@ -37,7 +37,7 @@ end
 local function setup_statusline_hls()
   -- Fetch active theme colors with fallbacks
   local palette = {
-    bg      = get_hl_color("NormalFloat", "bg") or get_hl_color("Normal", "bg", "#1b1d2b"),
+    bg      = get_hl_color("Normal", "bg") or get_hl_color("Normal", "bg", "#1b1d2b"),
     alt_bg  = get_hl_color("StatusLineNC", "bg") or get_hl_color("CursorLine", "bg", "#15161e"),
     fg      = get_hl_color("StatusLine", "fg") or get_hl_color("Normal", "fg", "#c0caf5"),
     dim     = get_hl_color("Comment", "fg", "#787c99"),
@@ -48,6 +48,10 @@ local function setup_statusline_hls()
     red     = get_hl_color("DiagnosticError", "fg") or get_hl_color("ErrorMsg", "fg", "#ff757f"),
     cyan    = get_hl_color("DiagnosticInfo", "fg") or get_hl_color("Special", "fg", "#86e1fc"),
   }
+
+    -- Want the cursors to my liking, so I had to add it here, will move it along with the function once i see it works.
+    set_hl("DynamicYellowCursor", { fg = palette.bg, bg = palette.yellow, bold = true })
+    vim.opt.guicursor = "n:block-DynamicYellowCursor,i:ver25-DynamicYellowCursor,v-ve:block-DynamicYellowCursor,r-cr:block-DynamicYellowCursor"
 
   -- Assign dynamic mode colors
   modes.n.color       = palette.blue
