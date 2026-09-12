@@ -28,5 +28,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Keep sign column fixed to prevent layout shift when diagnostics appear
 vim.opt.signcolumn = "yes"
 
-vim.opt.guicursor = "n:block-DynamicYellowCursor,i:ver25-DynamicYellowCursor,v-ve:block-DynamicYellowCursor,r-cr:block-DynamicYellowCursor"
-
