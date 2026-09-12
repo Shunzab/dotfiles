@@ -15,7 +15,7 @@
   services.thermald.enable = true;
   
   # Had to disable power-profiles so that tlp could work.
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
     settings = {
