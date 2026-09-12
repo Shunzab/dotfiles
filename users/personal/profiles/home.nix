@@ -55,6 +55,8 @@
       init.defaultBranch = "main";
       merge.conflictstyle = "zdiff3"; # Modern 3-way merge conflict style
       diff.colorWords = true;
+
+      credential.helper = "store";
     };
     lfs.enable = true;
   };
