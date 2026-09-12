@@ -49,19 +49,21 @@ local function setup_statusline_hls()
     cyan    = get_hl_color("DiagnosticInfo", "fg") or get_hl_color("Special", "fg", "#86e1fc"),
   }
 
-    -- Want the cursors to my liking, so I had to add it here, will move it along with the function once i see it works.
-    set_hl("DynamicYellowCursor", { fg = palette.bg, bg = palette.yellow, bold = true })
-    vim.opt.guicursor = "n:block-DynamicYellowCursor,i:ver25-DynamicYellowCursor,v-ve:block-DynamicYellowCursor,r-cr:block-DynamicYellowCursor"
+  -- Want the cursors to my liking, so I had to add it here, will move it along with the function once i see it works.
+  set_hl("DynamicYellowCursor", { fg = palette.bg, bg = palette.yellow })
+
+  -- Wrap everything into a single catch-all definition
+  vim.opt.guicursor = "n-v-c:block-DynamicYellowCursor,i-ci-ve:ver25-DynamicYellowCursor,r-cr:hor20-DynamicYellowCursor"
 
   -- Assign dynamic mode colors
   modes.n.color       = palette.blue
   modes.i.color       = palette.green
   modes.v.color       = palette.red
   modes.V.color       = palette.red
-  modes["\22"].color = palette.purple
-  modes.s.color       = palette.purple
-  modes.S.color       = palette.purple
-  modes["\19"].color = palette.purple
+  modes["\22"].color = palette.red
+  modes.s.color       = palette.red
+  modes.S.color       = palette.red
+  modes["\19"].color = palette.red
   modes.c.color       = palette.yellow
   modes.R.color       = palette.red
   modes.r.color       = palette.red

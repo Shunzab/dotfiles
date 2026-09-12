@@ -27,69 +27,71 @@
       {
         plugin = telescope-nvim;
         type = "lua";
-        config = builtins.readFile ./lua/telescope.lua;
+        config = builtins.readFile ./lua/plugins/telescope.lua;
       }
 
       {
         plugin = nvim-treesitter.withAllGrammars;
         type = "lua";
-        config = builtins.readFile ./lua/treesitter.lua;
+        config = builtins.readFile ./lua/plugins/treesitter.lua;
       }
 
       {
         plugin = plenary-nvim;
       }
 
-      }
+      {
         plugin = direnv-nvim;
+        type = "lua";
+        config = builtins.readFile ./lua/plugins/direnv.lua;
       }
 
       {
         plugin = nvim-lspconfig;
         type = "lua";
-        config = builtins.readFile ./lua/lsp.lua;
+        config = builtins.readFile ./lua/plugins/lsp.lua;
       }
 
       {
         plugin = nvim-lint;
         type = "lua";
-        config = builtins.readFile ./lua/lint.lua;
+        config = builtins.readFile ./lua/plugins/lint.lua;
       }
 
       {
         plugin = blink-cmp;
         type = "lua";
-        config = builtins.readFile ./lua/completion.lua;
+        config = builtins.readFile ./lua/plugins/completion.lua;
       }
 
       {
         plugin = conform-nvim;
         type = "lua";
-        config = builtins.readFile ./lua/conform.lua;
+        config = builtins.readFile ./lua/plugins/conform.lua;
       }
 
       {
         plugin = gitsigns-nvim;
         type = "lua";
-        config = builtins.readFile ./lua/gitsigns.lua;
+        config = builtins.readFile ./lua/plugins/gitsigns.lua;
       }
 
       {
         plugin = mini-nvim;
         type = "lua";
-        config = builtins.readFile ./lua/mini.lua;
+        config = builtins.readFile ./lua/plugins/mini.lua;
       }
 
       {
         plugin = rainbow-delimiters-nvim;
         type = "lua";
-        config = builtins.readFile ./lua/rainbow-delimiters.lua;
+        config = builtins.readFile ./lua/plugins/rainbow-delimiters.lua;
       }
 
       {
         plugin = trouble-nvim;
         type = "lua";
-        config = builtins.readFile ./lua/trouble.lua;
+        config = builtins.readFile ./lua/plugins/trouble.lua;
       }
     ];
 
