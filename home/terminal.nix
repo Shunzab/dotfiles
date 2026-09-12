@@ -41,6 +41,7 @@
       l = "eza -l --icons --git -a";
       lt = "eza --tree --level=2 --icons --git";
       cl = "clear";
+      nrs = "nixos-rebuild switch --flake /data/dotfiles#laptop";
     };
 
     initContent = ''

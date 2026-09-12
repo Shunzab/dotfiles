@@ -66,8 +66,8 @@ in
       };
 
       # for clean login when you have a login manager.
-      #systemd.services."getty@tty1".enable = !(isWaylandWM);
-      #systemd.services."autovt@tty1".enable = !(isWaylandWM);
+      systemd.services."getty@tty1".enable = !(isWaylandWM || cfg.kde);
+      systemd.services."autovt@tty1".enable = !(isWaylandWM || cfg.kde);
 
     }
 
