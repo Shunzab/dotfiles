@@ -20,17 +20,6 @@
     extraPackages = with pkgs; [
       ripgrep # Required for Telescope live_grep
       fd # Required for Telescope file finder
-
-      # lsps nvim-lspconfig
-      nil
-      lua-language-server
-
-      # formatters conform-nvim
-      alejandra
-      stylua
-
-      # Linters nvim-lint
-      statix
     ];
 
     # Plugins managed by Nixpkgs
@@ -49,6 +38,10 @@
 
       {
         plugin = plenary-nvim;
+      }
+
+      }
+        plugin = direnv-nvim;
       }
 
       {

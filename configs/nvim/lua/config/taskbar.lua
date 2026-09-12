@@ -37,7 +37,7 @@ end
 local function setup_statusline_hls()
   -- Fetch active theme colors with fallbacks
   local palette = {
-    bg      = get_hl_color("StatusLine", "bg") or get_hl_color("Normal", "bg", "#1b1d2b"),
+    bg      = get_hl_color("NormalFloat", "bg") or get_hl_color("Normal", "bg", "#1b1d2b"),
     alt_bg  = get_hl_color("StatusLineNC", "bg") or get_hl_color("CursorLine", "bg", "#15161e"),
     fg      = get_hl_color("StatusLine", "fg") or get_hl_color("Normal", "fg", "#c0caf5"),
     dim     = get_hl_color("Comment", "fg", "#787c99"),
@@ -52,8 +52,8 @@ local function setup_statusline_hls()
   -- Assign dynamic mode colors
   modes.n.color       = palette.blue
   modes.i.color       = palette.green
-  modes.v.color       = palette.purple
-  modes.V.color       = palette.purple
+  modes.v.color       = palette.red
+  modes.V.color       = palette.red
   modes["\22"].color = palette.purple
   modes.s.color       = palette.purple
   modes.S.color       = palette.purple
