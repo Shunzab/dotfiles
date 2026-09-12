@@ -43,17 +43,25 @@ in
 
   config = {
     boot = {
-      kernelPackages = kernelMap.${cfg.kernel}; # add kernel of your liking.
+      kernelPackages = kernelMap.${cfg.kernel};
       loader = {
         systemd-boot = {
           enable = true;
           configurationLimit = 10;
           editor = false;
-          consoleMode = "max";
+          # Fixed: Changed consoleMode to keep native framebuffer mode during shutdown
+          consoleMode = "keep"; 
         };
         efi.canTouchEfiVariables = true;
         timeout = 10;
       };
+
+      initrd.kernelModules = [
+        "dm-snapshot"
+        "dm-raid"
+        "dm-crypt"
+        "i915" # Keeps Intel graphics initialized
+      ];
 
       initrd.availableKernelModules = [
         "nvme"
@@ -66,31 +74,27 @@ in
         "dm_crypt"
         "cryptd"
       ];
-      initrd.kernelModules = [
-        "dm-snapshot"
-        "dm-raid"
-        "dm-crypt"
-        "i915"
-      ];
       initrd.services.lvm.enable = true;
 
       consoleLogLevel = 0;
       initrd.verbose = false;
+
       kernelParams = [
         "quiet"
         "splash"
         "rd.shell"
         "loglevel=3"
         "rd.systemd.show_status=false"
+        "systemd.show_status=false" # Added: Hides systemd status on main-system poweroff
         "rd.udev.log_level=3"
         "udev.log_priority=3"
-        "vt.global_cursor_default=0"
         "bgrt_disable"
+        # Removed: "vt.global_cursor_default=0" (causes DRM fallback issues)
       ];
 
       plymouth = {
         enable = true;
-        theme = "cubes";
+        theme = "connect";
         themePackages = [
           (pkgs.adi1090x-plymouth-themes.override {
             selected_themes = [
@@ -108,8 +112,8 @@ in
 
       resumeDevice = if cfg.hibernation then "/dev/pool/swap" else "";
       initrd.systemd = {
-        enable = true; # to change
-        emergencyAccess = cfg.emeracc; # to change, remember
+        enable = true;
+        emergencyAccess = cfg.emeracc;
         initrdBin = with pkgs; [
           iproute2
           pciutils
@@ -120,7 +124,7 @@ in
     zramSwap = {
       enable = true;
       algorithm = "zstd";
-      memoryPercent = 50; # uses up to 50% of your total ram for compressed swap
+      memoryPercent = 50;
       priority = 100;
     };
   };
