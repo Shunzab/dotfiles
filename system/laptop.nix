@@ -20,12 +20,13 @@
     enable = true;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_SCALING_GOVERNOR_ON_BAT = "performance";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "performance";
 
-      START_CHARGE_THRESH_BAT0 = 40;
+      START_CHARGE_THRESH_BAT0 = 90;
       STOP_CHARGE_THRESH_BAT0 = 90;
+      RESTORE_THRESHOLDS_ON_BAT = 1;
     };
 
   };
