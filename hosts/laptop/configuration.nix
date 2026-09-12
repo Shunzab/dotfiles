@@ -11,6 +11,7 @@
     (inputs.self + "/system/boot.nix")
     (inputs.self + "/system/graphics.nix")
     (inputs.self + "/system/misc.nix")
+    (inputs.self + "/system/laptop.nix")
     (inputs.self + "/system/networking.nix")
     (inputs.self + "/system/stylix.nix")
     (inputs.self + "/users/personal/personal.nix")
@@ -29,6 +30,8 @@
     cava
     signal-desktop
     cloudflare-warp
+    btop
+    klassy # Custom window decorator with blur & rounded glass edges
   ];
   services.cloudflare-warp.enable = true;
   system.stateVersion = "26.05";

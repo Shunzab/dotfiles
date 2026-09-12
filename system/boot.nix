@@ -90,7 +90,7 @@ in
 
       plymouth = {
         enable = true;
-        theme = "colorful_loop";
+        theme = "cubes";
         themePackages = [
           (pkgs.adi1090x-plymouth-themes.override {
             selected_themes = [

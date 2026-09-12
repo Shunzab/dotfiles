@@ -61,7 +61,7 @@
                   mountOptions = [ "compress=zstd" "noatime" ];
                 };
                 "/@snapshots" = {
-                  mountpoint = "/snapshots";
+                  mountpoint = "/home/.snapshots";
                   mountOptions = [ "compress=zstd" "noatime" ];
                 };
                 "/@data" = {
