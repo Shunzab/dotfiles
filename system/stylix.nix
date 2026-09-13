@@ -27,7 +27,8 @@
     # Base configuration
     # image = ./wallpaper.png;
     polarity = "dark"; # "dark", "light", or "either"
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-moon.yaml";
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-moon.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml"; 
 
     fonts = {
       serif = {

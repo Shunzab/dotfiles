@@ -130,7 +130,10 @@ in
         sddm.enable = true;
         sddm.wayland.enable = true;
         defaultSession = "plasma";
+        sddm.theme = "sddm-astronaut-theme";
+        sddm.extraPackages = [ pkgs.sddm-astronaut ];
       };
+      environment.systemPackages = [ pkgs.sddm-astronaut ];
       services.desktopManager.plasma6 = {
         enable = true;
       };
