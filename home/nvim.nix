@@ -25,6 +25,7 @@ let
 in
 {
   xdg.configFile."nvim".source = ../configs/nvim;
+  #stylix.targets.neovim.enable = false;
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -45,7 +46,17 @@ in
       nvim-lint
       plenary-nvim
       mini-nvim
+      base16-nvim
       rainbow-delimiters-nvim
     ];
+  };
+
+  stylix.targets.neovim = {  
+    enable = true;  
+    plugin = "base16-nvim";        # "base16-nvim" or "mini.base16"  
+    transparentBackground = {  
+      main = true;  
+      signColumn = true;  
+    };  
   };
 }

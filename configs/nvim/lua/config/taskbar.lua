@@ -53,7 +53,7 @@ local function setup_statusline_hls()
   set_hl("DynamicYellowCursor", { fg = palette.bg, bg = palette.yellow })
 
   -- Wrap everything into a single catch-all definition
-  vim.opt.guicursor = "n-v-c:block-DynamicYellowCursor,i-ci-ve:ver25-DynamicYellowCursor,r-cr:hor20-DynamicYellowCursor"
+  --vim.opt.guicursor = "n-v-c:block-DynamicYellowCursor,i-ci-ve:ver25-DynamicYellowCursor,r-cr:hor20-DynamicYellowCursor"
 
   -- Assign dynamic mode colors
   modes.n.color       = palette.blue
