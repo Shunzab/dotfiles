@@ -8,7 +8,7 @@ require("user.config.lualine")
 vim.g.netrw_banner = 0     -- Hides the introductory banner instructions
 vim.g.netrw_liststyle = 3  -- Tree view style listing
 vim.g.netrw_winsize = 25   -- Limits width when spawning split views
-vim.g.netrw_keepdir = 0 
+vim.g.netrw_keepdir = 0
 
 
 local rainbow = require("rainbow-delimiters")
@@ -33,7 +33,7 @@ require("snacks").setup({
     char = "│",
     only_scope = false, -- Keeps background lines visible across the entire file
     only_current = false, -- Shows indent markers for all levels
-    
+
     -- Active scope configuration (replaces mini.indentscope)
     scope = {
       enabled = true,
@@ -149,4 +149,64 @@ window = { config = { border = "rounded" } },
 })
 vim.notify = require("mini.notify").make_notify()
 
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    python = { "black", "isort" },
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+    json = { "prettier" },
+    nix = { "nixfmt" },
+    cpp = { "clang-format" },
+    rust = { "rustfmt" },
+  },
+  format_on_save = {
+    timeout_ms = 500,
+    lsp_format = "fallback",
+  },
+  notify_on_error = true,
+  notify_no_formatters = true,
+})
 
+require("gitsigns").setup({
+  signs = {
+    add          = { text = "│" },
+    change       = { text = "~" },
+    delete       = { text = "_" },
+    topdelete    = { text = "‾" },
+    changedelete = { text = "~" },
+    untracked    = { text = "┆" },
+  },
+  signcolumn = true,
+  numhl      = false,
+  linehl     = false,
+  word_diff  = false,
+  watch_gitdir = {
+    follow_files = true
+  },
+  auto_attach = true,
+  current_line_blame = true,
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = "eol",
+    delay = 1000,
+  },
+  preview_config = {
+    border = "single",
+    style = "minimal",
+    relative = "cursor",
+    row = 0,
+    col = 1
+  },
+})
+
+require("mini.trailspace").setup({
+  only_in_normal_buffers = true,
+})
+
+-- Automatically trim trailing whitespace on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    MiniTrailspace.trim()
+  end,
+})
