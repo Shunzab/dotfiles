@@ -45,6 +45,10 @@
       nvim-web-devicons
       rainbow-delimiters-nvim
       snacks-nvim
+      conform-nvim
+      blink-cmp
+      trouble-nvim
+      gitsigns-nvim
     ];
     initLua = ''
       require("user")
