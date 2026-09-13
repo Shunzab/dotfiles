@@ -1,9 +1,6 @@
 # gonna use lz-n to manage things, and its alot of work which is gonna extend beyond what i wanted it to extend to.
 {
-  config,
   pkgs,
-  lib,
-  inputs,
   ...
 }:
 {
@@ -13,8 +10,8 @@
   stylix.targets.neovim = {
     enable = true;
     plugin = "mini.base16"; # Options: "base16-nvim" or "mini.base16"
-  
-  # Optional: Toggle transparency
+
+    # Optional: Toggle transparency
     transparentBackground = {
       main = true;
       signColumn = true;
@@ -30,6 +27,8 @@
     extraPackages = with pkgs; [
       ripgrep # Required for Telescope live_grep
       fd # Required for Telescope file finder
+      nil
+      lua-language-server
     ];
 
     # Plugins managed by Nixpkgs

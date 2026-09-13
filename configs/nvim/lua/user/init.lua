@@ -170,7 +170,7 @@ require("conform").setup({
 require("gitsigns").setup({
   signs = {
     add          = { text = "│" },
-    change       = { text = "~" },
+    change       = { text = "|" },
     delete       = { text = "_" },
     topdelete    = { text = "‾" },
     changedelete = { text = "~" },
@@ -188,7 +188,7 @@ require("gitsigns").setup({
   current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = "eol",
-    delay = 1000,
+    delay = 2000,
   },
   preview_config = {
     border = "single",
