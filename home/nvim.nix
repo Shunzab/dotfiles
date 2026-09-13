@@ -6,26 +6,20 @@
   inputs,
   ...
 }:
-
-let
-  c = if (config ? lib.stylix.colors.withHashtag) then config.lib.stylix.colors.withHashtag else { };
-
-  bg = c.base00 or "#1a1b26";
-  fg = c.base05 or "#c0caf5";
-  black = c.base00 or "#15161e";
-  red = c.base08 or "#ff757f";
-  green = c.base0B or "#c3e88d";
-  yellow = c.base0A or "#ffc777";
-  blue = c.base0D or "#82aaff";
-  magenta = c.base0E or "#c099ff";
-  cyan = c.base0C or "#86e1fc";
-  bright_blk = c.base03 or "#565f89";
-  comment = c.base04 or "#7a88cf";
-  selection = c.base02 or "#2e3c64";
-in
 {
-  xdg.configFile."nvim".source = ../configs/nvim;
-  #stylix.targets.neovim.enable = false;
+
+  xdg.configFile."nvim/lua".source = ../configs/nvim/lua;
+
+  stylix.targets.neovim = {
+    enable = true;
+    plugin = "mini.base16"; # Options: "base16-nvim" or "mini.base16"
+  
+  # Optional: Toggle transparency
+    transparentBackground = {
+      main = true;
+      signColumn = true;
+    };
+  };
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -40,23 +34,20 @@ in
 
     # Plugins managed by Nixpkgs
     plugins = with pkgs.vimPlugins; [
-      lz-n
       telescope-nvim
+      telescope-fzf-native-nvim
       nvim-treesitter.withAllGrammars
       nvim-lint
       plenary-nvim
       mini-nvim
       base16-nvim
+      lualine-nvim
+      nvim-web-devicons
       rainbow-delimiters-nvim
+      snacks-nvim
     ];
-  };
-
-  stylix.targets.neovim = {  
-    enable = true;  
-    plugin = "base16-nvim";        # "base16-nvim" or "mini.base16"  
-    transparentBackground = {  
-      main = true;  
-      signColumn = true;  
-    };  
+    initLua = ''
+      require("user")
+    '';
   };
 }

@@ -1,7 +1,0 @@
-require("config.options")
-require("config.taskbar")
-require("misc.qol")
-require("colors")
-require("config.transparency")
-require("themes.indent_lines")
-require("config.keybinds")

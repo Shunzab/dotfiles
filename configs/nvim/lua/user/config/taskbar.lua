@@ -10,24 +10,24 @@ local augroup = api.nvim_create_augroup("CustomStatusline", { clear = true })
 
 -- 2. Dynamic Palette / Modes
 
-local function get_hl_color(group, attr, fallback)
+local function get_hl_color(group, attr)
   local hl = api.nvim_get_hl(0, { name = group, link = false })
-  return hl and hl[attr] or fallback
+  return hl and hl[attr]
 end
 
 local modes = {
-  n       = { name = "NORMAL",   hl = "StNormalMode" },
-  i       = { name = "INSERT",   hl = "StInsertMode" },
-  v       = { name = "VISUAL",   hl = "StVisualMode" },
-  V       = { name = "V-LINE",   hl = "StVisualMode" },
-  ["\22"] = { name = "V-BLOCK",  hl = "StVisualMode" },
-  s       = { name = "SELECT",   hl = "StVisualMode" },
-  S       = { name = "S-LINE",   hl = "StVisualMode" },
-  ["\19"] = { name = "S-BLOCK",  hl = "StVisualMode" },
-  c       = { name = "COMMAND",  hl = "StCmdMode" },
-  R       = { name = "REPLACE",  hl = "StReplaceMode" },
-  r       = { name = "PROMPT",   hl = "StReplaceMode" },
-  t       = { name = "TERMINAL", hl = "StTermMode" },
+  n        = { name = "NORMAL",   hl = "StNormalMode" },
+  i        = { name = "INSERT",   hl = "StInsertMode" },
+  v        = { name = "VISUAL",   hl = "StVisualMode" },
+  V        = { name = "V-LINE",   hl = "StVisualMode" },
+  ["\22"]  = { name = "V-BLOCK",  hl = "StVisualMode" },
+  s        = { name = "SELECT",   hl = "StVisualMode" },
+  S        = { name = "S-LINE",   hl = "StVisualMode" },
+  ["\19"]  = { name = "S-BLOCK",  hl = "StVisualMode" },
+  c        = { name = "COMMAND",  hl = "StCmdMode" },
+  R        = { name = "REPLACE",  hl = "StReplaceMode" },
+  r        = { name = "PROMPT",   hl = "StReplaceMode" },
+  t        = { name = "TERMINAL", hl = "StTermMode" },
 }
 
 local function set_hl(name, opts)
@@ -35,42 +35,41 @@ local function set_hl(name, opts)
 end
 
 local function setup_statusline_hls()
-  -- Fetch active theme colors with fallbacks
+  -- Dynamically resolve live colors directly from Neovim highlight groups
+  local bg = get_hl_color("StatusLine", "bg") or get_hl_color("Normal", "bg")
+  local fg = get_hl_color("StatusLine", "fg") or get_hl_color("Normal", "fg")
+
   local palette = {
-    bg      = get_hl_color("Normal", "bg") or get_hl_color("Normal", "bg", "#1b1d2b"),
-    alt_bg  = get_hl_color("StatusLineNC", "bg") or get_hl_color("CursorLine", "bg", "#15161e"),
-    fg      = get_hl_color("StatusLine", "fg") or get_hl_color("Normal", "fg", "#c0caf5"),
-    dim     = get_hl_color("Comment", "fg", "#787c99"),
-    blue    = get_hl_color("Function", "fg") or get_hl_color("Directory", "fg", "#82aaff"),
-    green   = get_hl_color("String", "fg") or get_hl_color("DiagnosticOk", "fg", "#c3e88d"),
-    purple  = get_hl_color("Statement", "fg") or get_hl_color("Keyword", "fg", "#c099ff"),
-    yellow  = get_hl_color("DiagnosticWarn", "fg") or get_hl_color("WarningMsg", "fg", "#ffc777"),
-    red     = get_hl_color("DiagnosticError", "fg") or get_hl_color("ErrorMsg", "fg", "#ff757f"),
-    cyan    = get_hl_color("DiagnosticInfo", "fg") or get_hl_color("Special", "fg", "#86e1fc"),
+    bg     = bg,
+    alt_bg = get_hl_color("StatusLineNC", "bg") or get_hl_color("CursorLine", "bg") or bg,
+    fg     = fg,
+    dim    = get_hl_color("Comment", "fg") or get_hl_color("NonText", "fg") or fg,
+    blue   = get_hl_color("Function", "fg") or get_hl_color("Directory", "fg") or fg,
+    green  = get_hl_color("String", "fg") or get_hl_color("DiagnosticOk", "fg") or fg,
+    purple = get_hl_color("Statement", "fg") or get_hl_color("Keyword", "fg") or fg,
+    yellow = get_hl_color("DiagnosticWarn", "fg") or get_hl_color("WarningMsg", "fg") or fg,
+    red    = get_hl_color("DiagnosticError", "fg") or get_hl_color("ErrorMsg", "fg") or fg,
+    cyan   = get_hl_color("DiagnosticInfo", "fg") or get_hl_color("Special", "fg") or fg,
   }
 
-  -- Want the cursors to my liking, so I had to add it here, will move it along with the function once i see it works.
   set_hl("DynamicYellowCursor", { fg = palette.bg, bg = palette.yellow })
 
-  -- Wrap everything into a single catch-all definition
-  --vim.opt.guicursor = "n-v-c:block-DynamicYellowCursor,i-ci-ve:ver25-DynamicYellowCursor,r-cr:hor20-DynamicYellowCursor"
-
   -- Assign dynamic mode colors
-  modes.n.color       = palette.blue
-  modes.i.color       = palette.green
-  modes.v.color       = palette.red
-  modes.V.color       = palette.red
-  modes["\22"].color = palette.red
-  modes.s.color       = palette.red
-  modes.S.color       = palette.red
-  modes["\19"].color = palette.red
-  modes.c.color       = palette.yellow
-  modes.R.color       = palette.red
-  modes.r.color       = palette.red
-  modes.t.color       = palette.cyan
+  modes.n.color        = palette.cyan
+  modes.i.color        = palette.green
+  modes.v.color        = palette.red
+  modes.V.color        = palette.red
+  modes["\22"].color  = palette.red
+  modes.s.color        = palette.red
+  modes.S.color        = palette.red
+  modes["\19"].color  = palette.red
+  modes.c.color        = palette.yellow
+  modes.R.color        = palette.red
+  modes.r.color        = palette.red
+  modes.t.color        = palette.blue
 
   for _, m in pairs(modes) do
-    set_hl(m.hl, { fg = palette.alt_bg, bg = m.color, bold = true })
+    set_hl(m.hl, { fg = palette.bg, bg = m.color, bold = true })
     set_hl(m.hl .. "Sep", { fg = m.color, bg = palette.bg })
     set_hl(m.hl .. "RightSep", { fg = m.color, bg = palette.alt_bg })
   end
@@ -158,7 +157,6 @@ local function get_display_name(bufnr, is_narrow)
     display = "terminal"
   elseif bt == "help" then
     display = "help:" .. fn.fnamemodify(name, ":t:r")
-
   elseif bt == "quickfix" then
     display = "[Quickfix]"
   elseif bt == "nofile" and name ~= "" then
@@ -214,7 +212,6 @@ local function update_git_branch(bufnr, force)
 
   local root = find_git_root(bufnr)
   if not root then
-
     vim.b[bufnr].git_branch = ""
     return
   end
@@ -289,7 +286,6 @@ local diag_cache = {}
 local function update_diagnostics(bufnr)
   if not rawget(vim, "diagnostic") or not api.nvim_buf_is_valid(bufnr) then
     return
-
   end
 
   if vim.diagnostic.count then
@@ -317,7 +313,6 @@ local function update_diagnostics(bufnr)
   end
 
   diag_cache[bufnr] = counts
-
 end
 
 api.nvim_create_autocmd({ "DiagnosticChanged", "BufEnter" }, {
@@ -401,7 +396,6 @@ local function update_breadcrumb(bufnr)
       name = clean_text(name:gsub("\n.*", ""), 24)
       if name ~= "" and name ~= crumbs[1] then
         table.insert(crumbs, 1, name)
-
       end
     end
 
@@ -418,7 +412,6 @@ local function update_breadcrumb(bufnr)
 
   vim.b[bufnr].st_crumbs = "%#StCrumbs# 󰌵 " .. table.concat(crumbs, " ❯ ") .. "%#StBg#"
 end
-
 
 api.nvim_create_autocmd({ "BufEnter", "CursorMoved", "InsertLeave" }, {
   group = augroup,
@@ -479,7 +472,6 @@ end
 local function get_lsp_diagnostics(bufnr)
   local d = diag_cache[bufnr]
   if not d then
-
     update_diagnostics(bufnr)
     d = diag_cache[bufnr]
   end
@@ -511,7 +503,6 @@ local function get_search_count()
     total = tostring(res.maxcount or res.total) .. "+"
   end
 
-  -- The fix is in the line below: (res.current or 0)
   return "%#StSearch#  " .. (res.current or 0) .. "/" .. total .. " %#StBg#"
 end
 
@@ -584,7 +575,6 @@ local function get_git_diff(bufnr, is_tiny)
 
   local parts = {}
   if (gs.added or 0) > 0 then
-
     parts[#parts + 1] = "%#StAdd#+" .. gs.added
   end
   if (gs.changed or 0) > 0 then
