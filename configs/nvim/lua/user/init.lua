@@ -228,7 +228,7 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.config("clangd", {
   cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=iwyu", "--fallback-style=llvm" },
-  filetypes = { "c", "c.doxygen", "cpp", "cpp.doxygen", "objc", "objcpp", "cuda" },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 })
 
 vim.lsp.config("nil_ls", {
