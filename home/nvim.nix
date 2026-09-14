@@ -29,6 +29,8 @@
       fd # Required for Telescope file finder
       nil
       lua-language-server
+      clang-tools
+      pyright
     ];
 
     # Plugins managed by Nixpkgs
@@ -48,6 +50,9 @@
       blink-cmp
       trouble-nvim
       gitsigns-nvim
+      sniprun
+      direnv-vim
+      friendly-snippets
     ];
     initLua = ''
       require("user")
