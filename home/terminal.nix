@@ -104,5 +104,10 @@
     enable = true;
     nix-direnv.enable = true;
     enableZshIntegration = true; # Automatically hooks direnv into Zsh
+    config = {
+      global = {
+        log_filter = "^$";
+      };
+    };
   };
 }
