@@ -1,6 +1,7 @@
 /data/dotfiles/.devenv/bootstrap/bootstrapLib.nix
 /data/dotfiles/.devenv/bootstrap/default.nix
 /data/dotfiles/.devenv/bootstrap/resolve-lock.nix
+/data/dotfiles/.env
 /data/dotfiles/devenv.local.nix
 /data/dotfiles/devenv.lock
 /data/dotfiles/devenv.nix
