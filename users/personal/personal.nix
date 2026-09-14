@@ -16,10 +16,19 @@ in
 
   users.users.srs = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "render"];
+    extraGroups = [
+      "wheel"
+      "video"
+      "render"
+    ];
     shell = user_shell;
     initialPassword = "changeme";
   };
+  nix.settings.trusted-users = [
+    "root"
+    "@wheel"
+    "srs"
+  ];
 
   home-manager = lib.mkIf has_home_manager {
     users.srs = import ./profiles/home.nix;

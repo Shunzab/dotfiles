@@ -58,6 +58,8 @@
 
       # Custom functions
       cx() { cd "$@" && l; }
+
+      export DIRENV_LOG_FORMAT=""
     '';
   };
 

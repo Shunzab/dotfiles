@@ -27,10 +27,10 @@
     extraPackages = with pkgs; [
       ripgrep # Required for Telescope live_grep
       fd # Required for Telescope file finder
-      nil
-      lua-language-server
-      clang-tools
-      pyright
+      #nil
+      #lua-language-server
+      #clang-tools
+      #pyright
     ];
 
     # Plugins managed by Nixpkgs
