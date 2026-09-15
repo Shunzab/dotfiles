@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
@@ -15,6 +13,7 @@
     (inputs.self + "/home/terminal.nix")
     (inputs.self + "/home/tmux.nix")
     (inputs.self + "/home/zed.nix")
+    (inputs.self + "/home/fastfetch.nix")
   ];
   home.username = "srs";
   home.homeDirectory = "/home/srs";
@@ -29,7 +28,6 @@
   };
 
   home.packages = with pkgs; [
-    fastfetch
     home-manager
     nerd-fonts.jetbrains-mono
   ];

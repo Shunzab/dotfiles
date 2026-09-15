@@ -228,7 +228,7 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.config("clangd", {
   cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=iwyu", "--fallback-style=llvm" },
-  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "h", "hpp" },
 })
 
 vim.lsp.config("nil_ls", {
@@ -265,16 +265,48 @@ local servers = {
   lua_ls = "lua-language-server",
   nil_ls = "nil",
   clangd = "clangd",
-  pyright = "pyright"
+  pyright = "pyright-langserver",
 }
 
-for server_name, binary in pairs(servers) do
-  if vim.fn.executable(binary) == 1 then
-    vim.lsp.enable(server_name)
-  else
-    vim.notify("LSP binary not found on PATH: " .. binary, vim.log.levels.WARN)
-  end
+for server_name in pairs(servers) do
+  vim.lsp.enable(server_name)
 end
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("LspDevenvCheck", { clear = true }),
+  callback = function(args)
+    local ft = vim.bo[args.buf].filetype
+
+    -- Map filetypes to your server keys
+    local ft_map = {
+      lua = "lua_ls",
+      nix = "nil_ls",
+      c = "clangd",
+      cpp = "clangd",
+      python = "pyright",
+    }
+
+    local server = ft_map[ft]
+    if server then
+      local binary = servers[server]
+      if vim.fn.executable(binary) == 0 then
+        vim.notify(
+          string.format("LSP binary '%s' missing for %s buffer.", binary, ft),
+          vim.log.levels.WARN
+        )
+      end
+    end
+  end,
+})
+
+--for server_name, binary in pairs(servers) do
+--  if vim.fn.executable(binary) == 1 then
+--    vim.lsp.enable(server_name)
+--  else
+--    vim.notify("LSP binary not found on PATH: " .. binary, vim.log.levels.WARN)
+--  end
+--end
+
 
 -- Global keymaps for LSP actions attached to buffers
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -358,12 +390,6 @@ end, { desc = "Symbols (Trouble)" })
 vim.keymap.set("n", "<leader>cl", function()
   require("trouble").toggle({ mode = "lsp", focus = true, win = { position = "right", size = 60 } })
 end, { desc = "LSP Definitions / references / ... (Trouble)" })
-
-require("sniprun").setup({ display = { "Terminal" } })
--- Keymap to run current line or selected visual block
-vim.keymap.set({ "n", "v" }, "<leader>r", "<Plug>SnipRun", { desc = "Run code snippet" })
--- Keymap to run the whole file.
-vim.keymap.set("n", "<leader>rf", ":%SnipRun<CR>", { desc = "Run whole file with SnipRun" })
 
 -- Use leader + hjkl to switch windows
 vim.keymap.set('n', '<leader>h', '<C-w>h', { desc = 'Move to left window' })

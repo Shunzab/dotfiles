@@ -1,8 +1,5 @@
 {
   pkgs,
-  config,
-  lib,
-  inputs,
   ...
 }:
 
@@ -28,7 +25,7 @@
     # image = ./wallpaper.png;
     polarity = "dark"; # "dark", "light", or "either"
     #base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml"; 
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
     fonts = {
       serif = {
@@ -71,8 +68,8 @@
 
     opacity = {
       applications = 0.85;
-      terminal = 0.85;
-      desktop = 0.75;
+      terminal = 0.80;
+      desktop = 0.85;
       popups = 0.80;
     };
   };

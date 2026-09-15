@@ -46,13 +46,13 @@ in
         enable32Bit = true;
         extraPackages = with pkgs; [
           intel-media-driver # Required for Intel UHD 620 (iHD)
-          vpl-gpu-rt          # Intel QuickSync/Video Processing runtime
+          vpl-gpu-rt # Intel QuickSync/Video Processing runtime
           libvdpau-va-gl
         ];
       };
 
       environment.sessionVariables = {
-      LIBVA_DRIVER_NAME = "iHD";
+        LIBVA_DRIVER_NAME = "iHD";
       };
 
       programs.sway = {
@@ -102,14 +102,15 @@ in
         # Clipboard Management
         wl-clipboard # Core Wayland clipboard CLI
         cliphist # Clipboard history manager
+        imagemagick
 
         # Utilities & System Info
         libnotify # Desktop notification trigger (notify-send)
-        fastfetch # Modern system info fetch tool
         btop # Resource & process monitor
         imv # Lightweight image viewer
 
-        hyprpaper # Wallpaper daemon
+        #hyprpaper # Wallpaper daemon
+        swww
         hyprlock # Screen locker
         hypridle # Idle management daemon (sleep/lock triggers)
         hyprpicker # Wayland color picker
