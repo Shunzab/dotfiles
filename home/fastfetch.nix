@@ -86,19 +86,10 @@ in
         }
         {
           type = "packages";
-          key = "│ {#33}󰏖 nix-sys {#keys}│";
-          format = "{nix-system}";
+          key = "│ {#33}󰏖 apps    {#keys}│";
+          #format = "{all} (total)";
         }
-        {
-          type = "packages";
-          key = "│ {#33}󰏖 nix-usr {#keys}│";
-          format = "{nix-user}";
-        }
-        {
-          type = "packages";
-          key = "│ {#33}󰏖 flatpak {#keys}│";
-          format = "{flatpak}";
-        }
+
         {
           type = "disk";
           key = "│ {#34}󰉉 disk    {#keys}│";
