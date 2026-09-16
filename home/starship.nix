@@ -37,17 +37,17 @@
         style = "bold cyan";
       };
 
-      custom.nix_files = {
-        symbol = "󱄅 ";
-        extensions = [ "nix" ];
-        files = [
-          "flake.nix"
-          "shell.nix"
-          "default.nix"
-        ];
-        format = "[$symbol]($style)";
-        style = "bold cyan";
-      };
+      #custom.nix_files = {
+      #  symbol = "󱄅 ";
+      #  extensions = [ "nix" ];
+      #  files = [
+      #    "flake.nix"
+      #    "shell.nix"
+      #    "default.nix"
+      #  ];
+      #  format = "[$symbol]($style)";
+      #  style = "bold cyan";
+      #};
     };
   };
 }
