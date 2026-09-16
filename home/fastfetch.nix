@@ -87,7 +87,7 @@ in
         {
           type = "packages";
           key = "│ {#33}󰏖 apps    {#keys}│";
-          #format = "{all} (total)";
+          format = "{all} (total)";
         }
 
         {
