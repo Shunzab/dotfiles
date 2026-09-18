@@ -48,6 +48,7 @@
       snacks-nvim
       conform-nvim
       blink-cmp
+      sniprun
       trouble-nvim
       gitsigns-nvim
       direnv-vim
