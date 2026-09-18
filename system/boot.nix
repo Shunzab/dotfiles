@@ -50,7 +50,7 @@ in
           configurationLimit = 10;
           editor = false;
           # Fixed: Changed consoleMode to keep native framebuffer mode during shutdown
-          consoleMode = "keep"; 
+          consoleMode = "keep";
         };
         efi.canTouchEfiVariables = true;
         timeout = 10;

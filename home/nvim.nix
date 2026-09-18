@@ -50,6 +50,7 @@
       blink-cmp
       trouble-nvim
       gitsigns-nvim
+      sniprun
       direnv-vim
       friendly-snippets
     ];
