@@ -12,10 +12,11 @@
     plugin = "mini.base16"; # Options: "base16-nvim" or "mini.base16"
 
     # Optional: Toggle transparency
-    transparentBackground = {
-      main = true;
-      signColumn = true;
-    };
+    #transparentBackground = {
+    #  main = true;
+    #  signColumn = true;
+    #  numberLine = true;
+    #};
   };
   programs.neovim = {
     enable = true;
@@ -53,6 +54,9 @@
       gitsigns-nvim
       direnv-vim
       friendly-snippets
+      neo-tree-nvim
+      nui-nvim
+      transparent-nvim
     ];
     initLua = ''
       require("user")

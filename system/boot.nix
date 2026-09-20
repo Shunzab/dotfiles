@@ -50,7 +50,7 @@ in
           configurationLimit = 10;
           editor = false;
           # Fixed: Changed consoleMode to keep native framebuffer mode during shutdown
-          consoleMode = "keep";
+          consoleMode = "auto";
         };
         efi.canTouchEfiVariables = true;
         timeout = 10;
@@ -83,18 +83,22 @@ in
         "quiet"
         "splash"
         "rd.shell"
-        "loglevel=3"
+        "loglevel=0"
+        #"loglevel=3"
         "rd.systemd.show_status=false"
         "systemd.show_status=false" # Added: Hides systemd status on main-system poweroff
-        "rd.udev.log_level=3"
-        "udev.log_priority=3"
+        "rd.udev.log_level=0"
+        "rd.udev.log_priority=0"
+        #"rd.udev.log_level=3"
+        #"udev.log_priority=3"
         "bgrt_disable"
+        "video=1280x1024@60"
         # Removed: "vt.global_cursor_default=0" (causes DRM fallback issues)
       ];
 
       plymouth = {
         enable = true;
-        theme = "connect";
+        theme = "cross_hud";
         themePackages = [
           (pkgs.adi1090x-plymouth-themes.override {
             selected_themes = [

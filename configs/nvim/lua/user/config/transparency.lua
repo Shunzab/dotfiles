@@ -1,17 +1,34 @@
--- Force Neovim to use transparent backgrounds (inherits Alacritty transparency)
-local function apply_transparency()
-  local transparent_groups = {
+local set_transparency = function()
+  local hl_groups = {
     "Normal",
     "NormalNC",
-    "SignColumn",
     "NormalFloat",
     "FloatBorder",
-    "EndOfBuffer",
+    "FloatTitle",
+    "TelescopeNormal",
+    "TelescopeBorder",
+    "TelescopePromptNormal",
+    "TelescopePromptBorder",
+    "TelescopeResultsNormal",
+    "TelescopeResultsBorder",
+    "TelescopePreviewNormal",
+    "TelescopePreviewBorder",
+    "LspFloatWinNormal",
+    "LspFloatWinBorder",
+    "DiagnosticsError",
+    "NormalSB",
+    "SignColumn",
+    "FoldColumn",
   }
-  for _, group in ipairs(transparent_groups) do
-    vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
+
+  for _, hl in ipairs(hl_groups) do
+    vim.api.nvim_set_hl(0, hl, { bg = "NONE", ctermbg = "NONE" })
   end
 end
 
-apply_transparency()
-vim.api.nvim_create_autocmd("ColorScheme", { callback = apply_transparency })
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = set_transparency,
+})
+
+set_transparency()

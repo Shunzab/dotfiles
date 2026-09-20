@@ -30,6 +30,7 @@
   home.packages = with pkgs; [
     home-manager
     nerd-fonts.jetbrains-mono
+    libreoffice
   ];
   fonts.fontconfig.enable = true;
 

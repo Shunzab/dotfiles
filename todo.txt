@@ -1,3 +1,4 @@
- - add paste shortcut for alacritty
+ - add paste shortcut for alacritty (done)
+
  - configure the kde shortcuts in a tiling manager manner, add shortcuts for:
   - closing things, resizing apps, selecting apps using keyboard.

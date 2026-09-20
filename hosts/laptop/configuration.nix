@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
@@ -33,6 +31,7 @@
     btop
     klassy # Custom window decorator with blur & rounded glass edges
   ];
+
   services.cloudflare-warp.enable = true;
   system.stateVersion = "26.05";
 }

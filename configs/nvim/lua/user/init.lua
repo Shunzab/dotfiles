@@ -1,7 +1,5 @@
 require("user.config.options")
 require("user.misc.qol")
-require("user.config.transparency")
---require("user.themes.indent_lines")
 require("user.config.keybinds")
 require("user.config.lualine")
 
@@ -10,8 +8,10 @@ vim.g.netrw_liststyle = 3 -- Tree view style listing
 vim.g.netrw_winsize = 25  -- Limits width when spawning split views
 vim.g.netrw_keepdir = 0
 
-local rainbow = require("rainbow-delimiters")
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
+local rainbow = require("rainbow-delimiters")
 vim.g.rainbow_delimiters = {
   strategy = { [""] = rainbow.strategy["global"] },
   query = { [""] = "rainbow-delimiters" },
@@ -25,6 +25,7 @@ vim.g.rainbow_delimiters = {
     "RainbowDelimiterCyan",
   },
 }
+
 require("snacks").setup({
   indent = {
     enabled = true,
@@ -73,6 +74,17 @@ require("snacks").setup({
       },
     },
   },
+
+  -- will work on dashboard later.
+  --dashboard = {
+  --  enabled = true,
+  --  sections = {
+  --    { section = "header" },
+  --    { section = "keys",       gap = 1,                  padding = 1 },
+  --    { title = "Recent Files", section = "recent_files", limit = 8,  padding = 1 },
+  --    { title = "Projects",     section = "projects",     limit = 5,  padding = 1 },
+  --  },
+  --},
 })
 
 local builtin = require("telescope.builtin")
@@ -420,3 +432,80 @@ vim.keymap.set('n', '<leader>fr', ':%SnipRun<CR>', { silent = true, desc = "Run 
 
 -- silently loads the direnv plugin
 vim.g.direnv_silent_load = 1
+
+
+require("neo-tree").setup({
+  hijack_netrw_behavior = "open_current",
+  close_if_last_window = true,
+  enable_git_status = true,
+  enable_diagnostics = false,
+
+  default_component_configs = {
+    indent = {
+      padding = 1,
+      with_expanders = false,
+    },
+    icon = {
+      folder_closed = "󰉋",
+      folder_open = "󰝰",
+      folder_empty = "󰷏",
+    },
+    git_status = {
+      symbols = {
+        added     = "",
+        modified  = "",
+        deleted   = "✖",
+        renamed   = "󰁕",
+        untracked = "?",
+        ignored   = "",
+        unstaged  = "󰄱",
+        staged    = "",
+        conflict  = "",
+      },
+    },
+  },
+
+  filesystem = {
+    filtered_items = {
+      visible = true,
+      hide_dotfiles = false,
+      hide_gitignored = false,
+    },
+    follow_current_file = {
+      enabled = true,
+    },
+    use_libuv_file_watcher = true,
+
+    -- Open in current window like netrw
+    window = {
+      position = "current",
+      mappings = {
+        ["<leader>e"] = "close_window",
+        ["q"] = "close_window",
+        ["l"] = "open",
+        ["h"] = "close_node",
+      },
+    },
+  },
+})
+
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree current toggle<cr>", { silent = true })
+
+require("transparent").setup({
+  extra_groups = {
+    "NormalFloat",
+    "FloatBorder",
+    "TelescopeNormal",
+    "TelescopeBorder",
+    "TelescopePromptBorder",
+    "TelescopeResultsBorder",
+    "TelescopePreviewBorder",
+    "NvimTreeNormal",
+    "NeoTreeNormal",
+    "NeoTreeNormalNC",
+    "DiagnosticFloatingError",
+    "DiagnosticFloatingWarn",
+    "DiagnosticFloatingInfo",
+    "DiagnosticFloatingHint",
+  },
+})
