@@ -426,13 +426,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-require('sniprun').setup({})
-vim.keymap.set({ 'n', 'v' }, '<leader>f', '<plug>SnipRun', { silent = true, desc = "Run line / selection" })
-vim.keymap.set('n', '<leader>fr', ':%SnipRun<CR>', { silent = true, desc = "Run whole file" })
-
 -- silently loads the direnv plugin
 vim.g.direnv_silent_load = 1
-
 
 require("neo-tree").setup({
   hijack_netrw_behavior = "open_current",

@@ -11,6 +11,7 @@
     enable = true;
     plugin = "mini.base16"; # Options: "base16-nvim" or "mini.base16"
 
+    # Was causing problems. Now handled by the transparency plugin.
     # Optional: Toggle transparency
     #transparentBackground = {
     #  main = true;
@@ -49,7 +50,6 @@
       snacks-nvim
       conform-nvim
       blink-cmp
-      sniprun
       trouble-nvim
       gitsigns-nvim
       direnv-vim
