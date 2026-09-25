@@ -11,6 +11,8 @@ vim.g.netrw_keepdir = 0
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.o.exrc = true
+
 local rainbow = require("rainbow-delimiters")
 vim.g.rainbow_delimiters = {
   strategy = { [""] = rainbow.strategy["global"] },
