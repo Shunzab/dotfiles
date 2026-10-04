@@ -31,7 +31,7 @@ in
   options.mynixos.emeracc = lib.mkOption {
     # provides emergency access root shell initrd
     type = lib.types.bool;
-    default = true;
+    default = false;
     description = "whether to enable emergency access to shell";
   };
 
@@ -53,7 +53,7 @@ in
           consoleMode = "auto";
         };
         efi.canTouchEfiVariables = true;
-        timeout = 10;
+        timeout = 0;
       };
 
       initrd.kernelModules = [
@@ -98,7 +98,7 @@ in
 
       plymouth = {
         enable = true;
-        theme = "cross_hud";
+        theme = "pixels";
         themePackages = [
           (pkgs.adi1090x-plymouth-themes.override {
             selected_themes = [

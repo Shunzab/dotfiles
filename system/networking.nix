@@ -8,7 +8,7 @@
 {
   networking = {
 
-    hostName = "laptop";
+    #hostName = "laptop"; # moved to configuration.nix
     networkmanager = {
       enable = true;
       #wifi.backend = "iwd";
@@ -39,7 +39,7 @@
   };
 
   services.openssh = {
-    enable = true;
+    enable = false;
     ports = [ 22 ];
     openFirewall = true;
     settings = {
