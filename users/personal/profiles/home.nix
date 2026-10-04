@@ -35,11 +35,13 @@
     signal-desktop
     btop
     klassy # Custom window decorator with blur & rounded glass edges
+
   ];
   fonts.fontconfig.enable = true;
 
   programs.git = {
     enable = true;
+    package = pkgs.git.override { withLibsecret = true; }; # hope to move to ssh once i am done with my homelab, and stable os.
 
     ignores = [
       ".direnv/"
@@ -59,7 +61,7 @@
       merge.conflictstyle = "zdiff3"; # Modern 3-way merge conflict style
       diff.colorWords = true;
 
-      credential.helper = "store";
+      credential.helper = "libsecret"; # idk why it was store
     };
     lfs.enable = true;
   };
