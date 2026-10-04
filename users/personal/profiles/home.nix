@@ -31,6 +31,10 @@
     home-manager
     nerd-fonts.jetbrains-mono
     libreoffice
+    cava
+    signal-desktop
+    btop
+    klassy # Custom window decorator with blur & rounded glass edges
   ];
   fonts.fontconfig.enable = true;
 

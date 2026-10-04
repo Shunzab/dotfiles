@@ -12,11 +12,12 @@
     (inputs.self + "/system/laptop.nix")
     (inputs.self + "/system/networking.nix")
     (inputs.self + "/system/stylix.nix")
+    (inputs.self + "/system/btrfs.nix")
     (inputs.self + "/users/personal/personal.nix")
     ./hardware-configuration.nix
     ./disko_dualboot.nix
   ];
-
+  networking.hostName = "laptop";
   time.timeZone = "Asia/Karachi";
   i18n.defaultLocale = "en_US.UTF-8";
   nix.settings.experimental-features = [
@@ -25,13 +26,15 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    cava
-    signal-desktop
     cloudflare-warp
-    btop
-    klassy # Custom window decorator with blur & rounded glass edges
+    tree
   ];
 
   services.cloudflare-warp.enable = true;
+
+  mynixos.btrfs = {
+    enable = true;
+    user = "srs";
+  };
   system.stateVersion = "26.05";
 }

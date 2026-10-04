@@ -1,0 +1,3 @@
+return {
+  -- 'lualine' configuration
+}

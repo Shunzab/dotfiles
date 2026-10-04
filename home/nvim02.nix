@@ -5,7 +5,7 @@
 
 {
 
-  xdg.configFile."nvim".source = ../configs/nvim/lua;
+  xdg.configFile."nvim/lua".source = ../configs/nvim/lua;
 
   programs.neovim = {
     enable = true;

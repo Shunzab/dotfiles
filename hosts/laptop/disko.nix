@@ -83,14 +83,7 @@
                   ];
                 };
                 "/@snapshots" = {
-                  mountpoint = "/snapshots";
-                  mountOptions = [
-                    "compress=zstd"
-                    "noatime"
-                  ];
-                };
-                "/@data" = {
-                  mountpoint = "/data";
+                  mountpoint = "/home/.snapshots";
                   mountOptions = [
                     "compress=zstd"
                     "noatime"

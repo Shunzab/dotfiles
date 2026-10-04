@@ -1,0 +1,3 @@
+return {
+  -- 'direnv-vim' configuration
+}

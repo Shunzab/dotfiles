@@ -33,6 +33,8 @@
       #lua-language-server
       #clang-tools
       #pyright
+      tree-sitter
+      ruff
     ];
 
     # Plugins managed by Nixpkgs

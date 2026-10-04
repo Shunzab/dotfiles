@@ -166,7 +166,7 @@ vim.notify = require("mini.notify").make_notify()
 require("conform").setup({
   formatters_by_ft = {
     lua = { "stylua" },
-    python = { "black", "isort" },
+    python = { "ruff" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
     json = { "prettier" },
     nix = { "nixfmt" },
@@ -242,18 +242,22 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.config("clangd", {
   cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=iwyu", "--fallback-style=llvm" },
-  filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "h", "hpp" },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+  root_markers = { ".git", "devenv.nix", "CMakeLists.txt" },
 })
 
 vim.lsp.config("nil_ls", {
   cmd = { "nil" },
   filetypes = { "nix" },
+  root_markers = { ".git", "devenv.nix" },
 })
+
 
 
 vim.lsp.config("pyright", {
   cmd = { "pyright-langserver", "--stdio" },
   filetypes = { "python" },
+  root_markers = { ".git", "pyproject.toml", "setup.py", "requirements.txt", "devenv.nix" },
   settings = {
     python = {
       analysis = {
@@ -264,14 +268,8 @@ vim.lsp.config("pyright", {
     },
   },
   handlers = {
-    ["$/progress"] = function(_, result, ctx)
-      local client = vim.lsp.get_client_by_id(ctx.client_id)
-      if client and client.name == "pyright" then
-        return
-      end
-      vim.lsp.handlers["$/progress"](_, result, ctx)
-    end,
-  }
+    ["$/progress"] = function() end,
+  },
 })
 
 -- Map configuration keys to their corresponding executable binary names
