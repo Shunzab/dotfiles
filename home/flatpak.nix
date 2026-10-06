@@ -80,7 +80,7 @@
           "~/Documents/prism_launcher_worlds:create"
           "~/Pictures/prism_launcher_screenshots:create"
           "!home"
-        ]; # Grants access to ~/Downloads only
+        ];
       };
     };
   };
