@@ -24,6 +24,8 @@
       logRefusedPackets = true;
       logRefusedUnicastsOnly = true;
     };
+
+    nftables.enable = true;
   };
 
   services.resolved = {

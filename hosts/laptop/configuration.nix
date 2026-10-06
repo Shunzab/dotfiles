@@ -13,7 +13,9 @@
     (inputs.self + "/system/networking.nix")
     (inputs.self + "/system/stylix.nix")
     (inputs.self + "/system/btrfs.nix")
+    (inputs.self + "/system/virtualization.nix")
     (inputs.self + "/users/personal/personal.nix")
+    (inputs.self + "/users/personal/gaming.nix")
     ./hardware-configuration.nix
     ./disko_dualboot.nix
   ];
@@ -36,5 +38,8 @@
     enable = true;
     user = "srs";
   };
+
+  mynixos.waydroid = true;
+
   system.stateVersion = "26.05";
 }

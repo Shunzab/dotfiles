@@ -1,8 +1,5 @@
 {
   inputs,
-  pkgs,
-  lib,
-  config,
   ...
 }:
 
@@ -72,6 +69,18 @@
         sockets = [ "x11" ];
         devices = [ "all" ];
         filesystems = [ "xdg-download" ];
+      };
+    };
+
+    "org.prismlauncher.PrismLauncher" = {
+      Context = {
+        sockets = [ "wayland" ];
+        devices = [ "dri" ];
+        filesystems = [
+          "~/Documents/prism_launcher_worlds:create"
+          "~/Pictures/prism_launcher_screenshots:create"
+          "!home"
+        ]; # Grants access to ~/Downloads only
       };
     };
   };
