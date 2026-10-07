@@ -14,7 +14,7 @@
     "md.obsidian.Obsidian"
     "org.mozilla.firefox"
     "com.github.IsmaelMartinez.teams_for_linux"
-
+    "org.prismlauncher.PrismLauncher"
   ];
 
   services.flatpak.update.onActivation = true;

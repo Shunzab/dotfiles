@@ -15,7 +15,8 @@
     (inputs.self + "/system/btrfs.nix")
     (inputs.self + "/system/virtualization.nix")
     (inputs.self + "/users/personal/personal.nix")
-    (inputs.self + "/users/personal/gaming.nix")
+    (inputs.self + "/system/gaming.nix")
+
     ./hardware-configuration.nix
     ./disko_dualboot.nix
   ];
