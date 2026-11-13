@@ -77,7 +77,7 @@ in
       initrd.services.lvm.enable = true;
 
       consoleLogLevel = 0;
-      initrd.verbose = false;
+      #initrd.verbose = false; #deprecated
 
       kernelParams = [
         "quiet"
@@ -115,14 +115,15 @@ in
       };
 
       resumeDevice = if cfg.hibernation then "/dev/pool/swap" else "";
-      initrd.systemd = {
-        enable = true;
-        emergencyAccess = cfg.emeracc;
-        initrdBin = with pkgs; [
-          iproute2
-          pciutils
-        ];
-      };
+      #initrd.systemd = { # deprecated
+      #  enable = true;
+      # to be moved acc to new docs when i have the time
+      #  emergencyAccess = cfg.emeracc;
+      #  initrdBin = with pkgs; [
+      #    iproute2
+      #    pciutils
+      #  ];
+      #};
     };
 
     zramSwap = {

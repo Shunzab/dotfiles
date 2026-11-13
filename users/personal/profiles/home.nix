@@ -12,7 +12,6 @@
     (inputs.self + "/home/starship.nix")
     (inputs.self + "/home/terminal.nix")
     (inputs.self + "/home/tmux.nix")
-    (inputs.self + "/home/zed.nix")
     (inputs.self + "/home/fastfetch.nix")
   ];
   home.username = "srs";
@@ -24,7 +23,6 @@
     tmux.enable = false;
     alacritty.enable = true;
     starship.enable = true;
-    zed.enable = true;
   };
 
   home.packages = with pkgs; [

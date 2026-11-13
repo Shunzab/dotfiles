@@ -12,7 +12,7 @@
     networkmanager = {
       enable = true;
       #wifi.backend = "iwd";
-      wifi.powersave = true;
+      wifi.powersave = false;
     };
 
     firewall = {
