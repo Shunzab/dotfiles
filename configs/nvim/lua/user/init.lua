@@ -252,8 +252,6 @@ vim.lsp.config("nil_ls", {
   root_markers = { ".git", "devenv.nix" },
 })
 
-
-
 vim.lsp.config("pyright", {
   cmd = { "pyright-langserver", "--stdio" },
   filetypes = { "python" },
@@ -272,12 +270,73 @@ vim.lsp.config("pyright", {
   },
 })
 
+vim.lsp.config("terraformls", {
+  cmd = { "terraform-ls", "serve" },
+  root_markers = { ".terraform", ".git" }
+})
+
+local function is_ansible_yaml(path, bufnr)
+  local ansible_paths = {
+    "/playbooks/",
+    "/roles/",
+    "/inventory/",
+    "/inventories/",
+    "/group_vars/",
+    "/host_vars/",
+  }
+  for _, p in ipairs(ansible_paths) do
+    if path:find(p, 1, true) then
+      return "yaml.ansible"
+    end
+  end
+
+  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 50, false)
+  for _, line in ipairs(lines) do
+    if line:match("^%s*%-?%s*hosts%s*:")
+        or line:match("^%s*%-?%s*import_playbook%s*:")
+        or line:match("^%s*%-?%s*ansible%.builtin%.")
+        or line:match("^%s*tasks%s*:")
+        or line:match("^%s*handlers%s*:")
+    then
+      return "yaml.ansible"
+    end
+  end
+
+  return "yaml"
+end
+
+vim.filetype.add({
+  extension = {
+    yml = is_ansible_yaml,
+    yaml = is_ansible_yaml,
+  },
+})
+
+vim.lsp.config("ansiblels", {
+  cmd = { "ansible-language-server", "--stdio" },
+  filetypes = { "yaml.ansible" },
+  root_markers = { "ansible.cfg", ".ansible-lint", "galaxy.yml", ".git" },
+  settings = {
+    ansible = {
+      validation = {
+        enabled = true,
+        lint = {
+          enabled = true,
+          path = "ansible-lint",
+        },
+      },
+    },
+  },
+})
+
 -- Map configuration keys to their corresponding executable binary names
 local servers = {
   lua_ls = "lua-language-server",
   nil_ls = "nil",
   clangd = "clangd",
   pyright = "pyright-langserver",
+  ansiblels = "ansible-language-server",
+  terraformls = "terraform-ls"
 }
 
 for server_name in pairs(servers) do
@@ -296,6 +355,9 @@ vim.api.nvim_create_autocmd("FileType", {
       c = "clangd",
       cpp = "clangd",
       python = "pyright",
+      terraform = "terraformls",
+      ["terraform-vars"] = "terraformls",
+      ["yaml.ansible"] = "ansiblels",
     }
 
     local server = ft_map[ft]
